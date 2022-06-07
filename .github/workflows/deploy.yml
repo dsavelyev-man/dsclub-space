@@ -12,6 +12,7 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
+      - uses: actions/setup-node@v1
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
