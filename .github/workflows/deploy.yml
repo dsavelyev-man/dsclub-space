@@ -19,4 +19,7 @@ jobs:
       - run: mkdir "$HOME/.ssh"
       - run: echo "${{ secrets.dsclub.space }}" > "$HOME/.ssh/key"
       - run: chmod 600 "$HOME/.ssh/key"
+      - run: npm ci
+      - run: npm run build
+      
       
