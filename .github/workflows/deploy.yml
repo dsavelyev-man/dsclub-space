@@ -18,10 +18,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
-      - run: echo "${{ secrets.SERVER_KEY }}"
       - run: echo "${{ secrets.SERVER_KEY }}" > "$HOME/.ssh/key"
       - run: chmod 600 "$HOME/.ssh/key"
       - run: npm ci
       - run: npm run build
-      - run: cd build && rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete root@92.53.104.199:/var/www/dsclub.space
+      - run: cd build && rsync -e "ssh -p 20022 -i -o StrictHostKeyChecking=no" --archive --compress --delete . root@92.53.104.199:/var/www/dsclub.space
       
