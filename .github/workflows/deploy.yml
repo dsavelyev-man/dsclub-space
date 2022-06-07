@@ -6,13 +6,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Install SSH
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.dsclub_space }}
-          ARGS: "-rltgoDzvO"
-          SOURCE: "build/"
-          REMOTE_HOST: 92.53.104.199
-          REMOTE_USER: root
-          TARGET: /var/www/dsclub.space
-          EXCLUDE: "/dist/, /node_modules/"
+      - name: Deploy on server
+        run: ssh root@92.53.104.199
