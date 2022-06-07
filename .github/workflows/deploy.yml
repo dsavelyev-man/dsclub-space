@@ -1,0 +1,13 @@
+name: Deploy
+on:
+  push:
+    branches: [ "master" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install SSH
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.dsclub_space}}
+        known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
