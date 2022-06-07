@@ -22,5 +22,5 @@ jobs:
       - run: chmod 600 "$HOME/.ssh/key"
       - run: npm ci
       - run: npm run build
-      - run: cd build && rsync -e "ssh -p 20022 -i -o StrictHostKeyChecking=no" --archive --compress --delete . root@92.53.104.199:/var/www/dsclub.space
+      - run: cd build && rsync -e "ssh -p 20022 -i StrictHostKeyChecking=no" --archive --compress --delete . root@92.53.104.199:/var/www/dsclub.space
       
