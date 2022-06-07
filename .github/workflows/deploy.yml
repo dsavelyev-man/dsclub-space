@@ -12,5 +12,5 @@ jobs:
           key: ${{ secrets.dsclub_space}}
           name: id_rsa
           known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
-    - name: rsync over SSH
-      run: rsync ./ root@92.53.104.199:bar/
+      - name: rsync over SSH
+        run: rsync ./ root@92.53.104.199:bar/
