@@ -12,15 +12,22 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: set -eu
-      - run: mkdir "$HOME/.ssh"
-      - run: echo "${{ secrets.SERVER_KEY }}" > "$HOME/.ssh/key"
-      - run: chmod 600 "$HOME/.ssh/key"
-      - run: npm ci
-      - run: npm run build
-      - run: cd build && rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete root@92.53.104.199:/var/www/dsclub.space
+          key: ${{ secrets.SERVER_KEY }}
+          known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+      # - uses: actions/checkout@v2
+      # - uses: actions/setup-node@v1
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      # - run: set -eu
+      # - run: mkdir "$HOME/.ssh"
+      # - run: echo "${{ secrets.SERVER_KEY }}" > "$HOME/.ssh/key"
+      # - run: chmod 600 "$HOME/.ssh/key"
+      # - run: npm ci
+      # - run: npm run build
+      # - run: cd build && rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete root@92.53.104.199:/var/www/dsclub.space
       
