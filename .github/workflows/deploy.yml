@@ -22,7 +22,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Deploy with rsync
-        run: rsync -avz ./build/ root@${{ secrets.SSH_HOST }}:/home/www/dsclub.space/build/
+        run: rsync -avz ./build/ root@${{ secrets.SERVER_HOST }}:/home/www/dsclub.space/build/
       # - uses: actions/checkout@v2
       # - uses: actions/setup-node@v1
       #   with:
