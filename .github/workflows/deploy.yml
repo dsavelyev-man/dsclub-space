@@ -26,5 +26,5 @@ jobs:
           # hello:)
           password: oR4REbCk
           port: 22
-          source: "build/*"
+          source: "./build/*"
           target: "/var/www/dsclub.space"
