@@ -24,7 +24,7 @@ jobs:
           password: ${{ secrets.ROOT_DSCLUB_PASSWORD }}
           port: 22
           script: |
-            ls
+            cd /var/www/dsclub.space
       # - run: npm install
       # - run: npm run build
       # - name: Install SSH key
