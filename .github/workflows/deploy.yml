@@ -39,8 +39,7 @@ jobs:
             cd /var/www/dsclub.space
             cp .env ./build/.env
             yarn
-            cd ..
+            chmod ./pm2_runner.sh
             bash ./pm2_runner.sh  
-            chmod +x ./pm2_runner.sh
 
 
