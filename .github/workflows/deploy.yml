@@ -38,7 +38,9 @@ jobs:
           script: |
             cd /var/www/dsclub.space
             cp .env ./build/.env
+            cd ./build
             yarn
+            cd ..
             pm2 restart server
 
 
