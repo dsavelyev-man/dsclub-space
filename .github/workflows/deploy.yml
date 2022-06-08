@@ -37,4 +37,6 @@ jobs:
           port: 22
           script: |
             cd /var/www/dsclub.space
-            cp .env ./build/.emv
+            cp .env ./build/.env
+            pm2 restart server
+
