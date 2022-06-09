@@ -30,7 +30,7 @@ jobs:
           port: 22
           source: "./build/*"
           rm: true
-          target: "/var/www/dsclub.space"
+          target: "/var/www/dsclub.space/server"
 
       - name: Copy .env and restart server
         uses: appleboy/ssh-action@master
@@ -41,10 +41,10 @@ jobs:
           port: 22
           script: |
             cd /var/www/dsclub.space
-            cp .env ./build/.env
-            cd ./build
+            cp .env ./server/build/.env
+            cd ./server/build
             yarn
             cd ..
-            pm2 start /var/www/dsclub.space/build/server.js
+            pm2 start /var/www/dsclub.space/server/build/server.js
 
 
