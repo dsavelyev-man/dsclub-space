@@ -65,6 +65,8 @@
     "country-list": "^2.2.0",
     "normalize.css": "^8.0.1",
     "proxy-addr": "^2.0.7",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.21"
   }
