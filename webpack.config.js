@@ -47,6 +47,9 @@ Encore.setPublicPath('/assets')
 */
 Encore.addEntry('app', './resources/js/app.js')
 
+Encore.enableReactPreset()
+Encore.enableSassLoader()
+
 /*
 |--------------------------------------------------------------------------
 | Copy assets
