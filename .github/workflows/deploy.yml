@@ -45,6 +45,6 @@ jobs:
             cd ./server/build
             yarn
             cd ..
-            pm2 start /var/www/dsclub.space/server/build/server.js
+            pm2 start /var/www/dsclub.space/server/build/server.js -f
 
 
