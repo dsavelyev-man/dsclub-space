@@ -30,7 +30,7 @@ jobs:
           port: 22
           source: "./build/*"
           rm: true
-          target: "/var/www/dsclub.space/build/"
+          target: "/var/www/dsclub.space"
 
       - name: Copy .env and restart server
         uses: appleboy/ssh-action@master
