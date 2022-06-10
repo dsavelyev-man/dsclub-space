@@ -44,6 +44,7 @@ jobs:
             cp .env ./server/build/.env
             cd ./server/build
             yarn
+            node ace migration:run
             cd ..
             pm2 start /var/www/dsclub.space/server/build/server.js -f
 
