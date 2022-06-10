@@ -65,12 +65,14 @@
     "@adonisjs/shield": "^7.0.11",
     "@adonisjs/view": "^6.1.5",
     "country-list": "^2.2.0",
+    "lodash": "^4.17.21",
     "luxon": "^2.4.0",
     "mysql": "^2.18.1",
     "normalize.css": "^8.0.1",
     "proxy-addr": "^2.0.7",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-router-dom": "^6.3.0",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.21"
   }
