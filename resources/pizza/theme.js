@@ -18,6 +18,38 @@ const theme = createTheme({
         },
       },
     },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          "display": "flex",
+          "& .MuiOutlinedInput-notchedOutline": {
+            border: "none",
+          },
+          "& .MuiSelect-select": {
+            display: "flex",
+          },
+        },
+        icon: {
+          color: "rgb(234,234,234)",
+        },
+        outlined: {
+          border: "none",
+        },
+        select: (props) => {
+          const styles = {
+            textTransform: "capitalize",
+            padding: "2px 8px",
+            color: "rgb(234,234,234)",
+          };
+
+          if (props.color === "white") {
+            styles.color = "rgb(234,234,234)";
+          }
+
+          return styles;
+        },
+      },
+    },
   },
 });
 

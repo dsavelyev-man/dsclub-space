@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cityReducer from "./reducers/city/cityReducer";
+import deliveryReducer from "./reducers/city/deliveryReducer";
 
 const reducer = {
-  city: cityReducer,
+  delivery: deliveryReducer,
 };
 
 const store = configureStore({

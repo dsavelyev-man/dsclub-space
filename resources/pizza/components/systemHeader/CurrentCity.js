@@ -2,10 +2,11 @@ import React from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSetCity } from "../../store/reducers/city/cityReducer";
+import { fetchSetCity } from "../../store/reducers/city/deliveryReducer";
+import RoomIcon from "@mui/icons-material/Room";
 
 const CurrentCity = (props) => {
-  const city = useSelector((state) => state.city.current);
+  const city = useSelector((state) => state.delivery.city);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -16,7 +17,15 @@ const CurrentCity = (props) => {
 
   return (
     city && (
-      <Button onClick={props.changeOpen} color="white" endIcon={<ArrowDropDownIcon />}>
+      <Button
+        onClick={props.changeOpen}
+        color="white"
+        startIcon={<RoomIcon />}
+        endIcon={<ArrowDropDownIcon />}
+        sx={{
+          marginRight: 4,
+        }}
+      >
         {city.title}
       </Button>
     )

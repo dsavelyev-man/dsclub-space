@@ -3,10 +3,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  current: null,
+  city: null,
+  type: window.localStorage.getItem("deliveryType") || 0,
 };
 
-export const fetchSetCity = createAsyncThunk("city/fetchSetCity", async (id) => {
+export const fetchSetCity = createAsyncThunk("delivery/fetchSetCity", async (id) => {
   const response = await axios.get(`ajax/cities/${id}`);
 
   if (response.status === 200) {
@@ -17,20 +18,23 @@ export const fetchSetCity = createAsyncThunk("city/fetchSetCity", async (id) => 
 });
 
 export const citySlice = createSlice({
-  name: "city",
+  name: "delivery",
   initialState,
   reducers: {
     setCity: (state, action) => {
-      state.current = action.payload;
+      state.city = action.payload;
+    },
+    setType: (state, action) => {
+      state.type = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchSetCity.fulfilled, (state, action) => {
-      state.current = action.payload;
+      state.city = action.payload;
     });
   },
 });
 
-export const { setCity } = citySlice.actions;
+export const { setCity, setType } = citySlice.actions;
 
 export default citySlice.reducer;

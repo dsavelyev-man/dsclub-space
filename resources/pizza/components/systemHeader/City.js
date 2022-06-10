@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const City = (props) => {
   let title = props.city.title;
-  const currentId = useSelector((state) => state.city.current.id);
+  const currentId = useSelector((state) => state.delivery.city.id);
   let weight = props.city.big ? 600 : 400;
   const isCurrent = currentId === props.city.id;
 
