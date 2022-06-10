@@ -3,6 +3,7 @@ import React from "react";
 import "../../scss/components/systemHeader.scss";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ModalCitites from "./ModalCitites";
+import CurrentCity from "./CurrentCity";
 
 const SystemHeader = () => {
   const [open, setOpen] = React.useState(false);
@@ -19,11 +20,9 @@ const SystemHeader = () => {
       }}
     >
       <Container>
-        <Button onClick={changeOpen} color="white" endIcon={<ArrowDropDownIcon />}>
-          Moscow
-        </Button>
+        <CurrentCity changeOpen={changeOpen} />
       </Container>
-      <ModalCitites open={open} changeOpen={changeOpen} />
+      {open && <ModalCitites open={open} changeOpen={changeOpen} />}
     </Box>
   );
 };

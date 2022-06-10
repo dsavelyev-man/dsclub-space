@@ -1,6 +1,6 @@
 {
-  "assets/app.css": "/assets/app.869cceaf.css",
-  "assets/app.js": "/assets/app.dfb8ff91.js",
-  "assets/pizza.css": "/assets/pizza.880f6387.css",
-  "assets/pizza.js": "/assets/pizza.392dae62.js"
+  "assets/app.css": "http://localhost:8080/assets/app.css",
+  "assets/app.js": "http://localhost:8080/assets/app.js",
+  "assets/pizza.css": "http://localhost:8080/assets/pizza.css",
+  "assets/pizza.js": "http://localhost:8080/assets/pizza.js"
 }

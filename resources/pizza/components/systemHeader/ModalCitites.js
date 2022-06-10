@@ -2,9 +2,12 @@ import React from "react";
 import { Box, Modal } from "@mui/material";
 import axios from "axios";
 import City from "./City";
+import { useDispatch } from "react-redux";
+import { setCity } from "../../store/reducers/city/cityReducer";
 
 const ModalCities = (props) => {
   const [cities, setCities] = React.useState([]);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     const getCities = async () => {
@@ -20,8 +23,12 @@ const ModalCities = (props) => {
     getCities();
   }, []);
 
-  const selectCity = (id) => {
-    window.localStorage.setItem("city", id);
+  const selectCity = (city) => {
+    window.localStorage.setItem("city", city.id);
+
+    dispatch(setCity(city));
+
+    props.changeOpen();
   };
 
   return (
@@ -38,7 +45,7 @@ const ModalCities = (props) => {
           padding: 2,
           display: "flex",
           width: "40em",
-          height: "30em",
+          height: "28em",
           flexFlow: "column wrap",
           borderRadius: 2,
         }}

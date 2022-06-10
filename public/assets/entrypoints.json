@@ -2,18 +2,18 @@
   "entrypoints": {
     "app": {
       "css": [
-        "/assets/app.869cceaf.css"
+        "http://localhost:8080/assets/app.css"
       ],
       "js": [
-        "/assets/app.dfb8ff91.js"
+        "http://localhost:8080/assets/app.js"
       ]
     },
     "pizza": {
       "css": [
-        "/assets/pizza.880f6387.css"
+        "http://localhost:8080/assets/pizza.css"
       ],
       "js": [
-        "/assets/pizza.392dae62.js"
+        "http://localhost:8080/assets/pizza.js"
       ]
     }
   }

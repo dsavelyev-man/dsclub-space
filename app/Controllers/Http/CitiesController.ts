@@ -10,4 +10,13 @@ export default class CitiesController {
 
     return cities;
   }
+
+  async show({ params }) {
+    console.log(params);
+    const city = await City.query()
+      .where("id", params.id === "null" ? 7 : params.id)
+      .firstOrFail();
+
+    return city;
+  }
 }
