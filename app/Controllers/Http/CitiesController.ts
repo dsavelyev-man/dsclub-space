@@ -3,7 +3,11 @@
 import City from "App/Models/City";
 
 export default class CitiesController {
-    index() {
-        return City.all()
-    }
+  async index() {
+    let cities = await City.query().orderBy("title", "asc");
+
+    cities = cities.map((city) => city.serialize());
+
+    return cities;
+  }
 }

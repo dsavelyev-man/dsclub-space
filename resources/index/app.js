@@ -1,4 +1,4 @@
-import "../scss/app.scss";
+import "./scss/app.scss";
 import "normalize.css";
 import React from "react";
 import { createRoot } from "react-dom/client";
@@ -8,11 +8,13 @@ import Routing from "./Routing";
 // console.log(getData())
 
 const App = () => {
-    return <>
-        <Routing/>
+  return (
+    <>
+      <Routing />
     </>
+  );
 };
 
 const root = createRoot(document.getElementById("dsclub"));
 
-root.render(<App/>);
+root.render(<App />);

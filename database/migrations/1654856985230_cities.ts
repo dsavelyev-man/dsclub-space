@@ -1,22 +1,22 @@
-import BaseSchema from '@ioc:Adonis/Lucid/Schema'
-import City from 'App/Models/City'
-import { isArray } from "lodash"
+import BaseSchema from "@ioc:Adonis/Lucid/Schema";
+import City from "App/Models/City";
+import { isArray } from "lodash";
 
 export default class extends BaseSchema {
-  protected tableName = 'cities'
+  protected tableName = "cities";
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
+      table.increments("id");
 
-      table.string("title", 255)
-      table.boolean("big")
+      table.text("title");
+      table.boolean("big");
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.timestamp("created_at", { useTz: true });
+      table.timestamp("updated_at", { useTz: true });
 
       const cities = [
         ["Москва"],
@@ -31,7 +31,7 @@ export default class extends BaseSchema {
         "Дмитров",
         "Долгопрудный",
         "Домодедово",
-        "Железнодорожый",
+        "Железнодорожный",
         "Жуковский",
         "Зеленоград",
         "Ивантеевка",
@@ -58,7 +58,7 @@ export default class extends BaseSchema {
         "Реутов",
         ["Рязань"],
         ["Самара"],
-        "Сапроново"
+        "Сапроново",
         ["Саратов"],
         "Сергиев Посад",
         "Ступино",
@@ -69,28 +69,28 @@ export default class extends BaseSchema {
         "Щербинка",
         "Электросталь",
         "Ярославль",
-      ]
+      ];
 
-      for(const city of cities) {
+      for (const city of cities) {
         let big = false;
-        let title = ""
+        let title = "";
 
-        if(isArray(city)) {
-          big = true
-          title = city[0]
+        if (isArray(city)) {
+          big = true;
+          title = city[0];
         } else {
-          title = city
+          title = city;
         }
 
         City.create({
           title,
-          big
-        })
+          big,
+        });
       }
-    })
+    });
   }
 
-  public async down () {
-    this.schema.dropTable(this.tableName)
+  public async down() {
+    this.schema.dropTable(this.tableName);
   }
 }

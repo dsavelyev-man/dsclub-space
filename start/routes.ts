@@ -18,8 +18,16 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route'
+import Route from "@ioc:Adonis/Core/Route";
 
-Route.get('/*', async ({ view }) => {
-  return view.render('index')
-})
+Route.get("/pizza/*", async ({ view }) => {
+  return view.render("pizza");
+});
+
+Route.get("/pizza/", async ({ view }) => {
+  return view.render("pizza");
+});
+
+Route.get("/*", async ({ view }) => {
+  return view.render("index");
+});
