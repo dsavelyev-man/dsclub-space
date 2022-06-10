@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const fetchSetCity = createAsyncThunk("delivery/fetchSetCity", async (id) => {
-  const response = await axios.get(`ajax/cities/${id}`);
+  const response = await axios.get(`/ajax/cities/${id}`);
 
   if (response.status === 200) {
     return response.data;
