@@ -3,7 +3,7 @@
 import City from "App/Models/City";
 
 export default class CitiesController {
-    index({request, response}) {
+    index() {
         return City.all()
     }
 }
