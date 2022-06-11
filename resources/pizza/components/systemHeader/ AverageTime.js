@@ -5,10 +5,7 @@ const typographySx = {
   color: "rgb(211,211,211)",
 };
 
-const getNumber = () => {
-  const max = 59;
-  const min = 1;
-
+const getNumber = (min = 1, max = 59) => {
   let val = Math.floor(Math.random() * (max - min) + min);
 
   if (val < 10) {
@@ -19,7 +16,6 @@ const getNumber = () => {
 };
 
 const AverageTime = () => {
-  console.log(getNumber());
   return (
     <>
       <Typography sx={typographySx}>Среднее время доставки*</Typography>
@@ -30,10 +26,10 @@ const AverageTime = () => {
           fontWeight: 600,
         }}
       >
-        00:{getNumber()}:{getNumber()}
+        00:{getNumber(20)}:{getNumber()}
       </Typography>
     </>
   );
 };
 
-export default AverageTime;
+export default React.memo(AverageTime);

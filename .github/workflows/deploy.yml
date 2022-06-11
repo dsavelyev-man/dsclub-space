@@ -46,5 +46,5 @@ jobs:
             yarn
             node ace migration:run
             cd ..
-            kill $(lsof -t -i:3333)
-            node /var/www/dsclub.space/server/build/server.js -f
+            pm2 stop all
+            pm2 start /var/www/dsclub.space/server/build/server.js

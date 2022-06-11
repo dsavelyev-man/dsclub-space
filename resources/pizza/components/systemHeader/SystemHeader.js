@@ -7,6 +7,7 @@ import DeliveryType from "./DeliveryType";
 import AverageTime from "./ AverageTime";
 import LoginIcon from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
+import { colors } from "../../theme";
 
 const SystemHeader = () => {
   const [open, setOpen] = React.useState(false);
@@ -35,7 +36,7 @@ const SystemHeader = () => {
         <Link
           to="/pizza/login"
           style={{
-            color: "rgb(234,234,234)",
+            color: colors.white.main,
             marginLeft: "auto",
             display: "flex",
             alignItems: "center",
