@@ -17,7 +17,7 @@ const BasketButton = styled(Button)({
 const Basket = () => {
   return (
     <Box>
-      <Badge badgeContent={4} overlap="circular" color="primary">
+      <Badge title="Корзина" badgeContent={4} overlap="circular" color="primary">
         <BasketButton>
           <ShoppingBasketIcon />
         </BasketButton>

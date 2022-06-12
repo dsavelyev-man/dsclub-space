@@ -1,19 +1,19 @@
 import React from "react";
-import { Box, Container, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
-import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
+import { Box, Container } from "@mui/material";
 import PromoCode from "./PromoCode";
 import Links from "./Links";
 import Logo from "./Logo";
 import Basket from "./Basket";
+import { colors } from "../../theme";
 
 const Navbar = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "grey.900",
-        padding: 3,
+        backgroundColor: colors.navbar.main,
+        padding: 2,
         position: "sticky",
+        zIndex: 10,
         top: 0,
       }}
     >

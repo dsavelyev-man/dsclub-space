@@ -13,6 +13,9 @@ export const colors = {
     main: "rgb(227, 24, 54)",
     contrastText: "rgb(255,255,255)",
   },
+  navbar: {
+    main: "#141414",
+  },
 };
 
 const theme = createTheme({

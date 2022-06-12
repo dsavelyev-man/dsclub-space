@@ -14,7 +14,7 @@ const PromoCodeField = styled(TextField)({
 
   "& .MuiOutlinedInput-input": {
     color: colors.promoCode.contrastText,
-    paddingRight: 58,
+    paddingRight: 68,
   },
 });
 

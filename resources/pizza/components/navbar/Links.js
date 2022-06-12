@@ -45,6 +45,7 @@ const Links = () => {
             alignItems: "center",
             textDecoration: "none",
             marginRight: 30,
+            fontFamily: 'Roboto","Helvetica","Arial",sans-serif',
           }}
           key={link.to}
           to={link.to}
