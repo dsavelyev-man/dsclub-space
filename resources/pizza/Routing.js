@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SystemHeader from "./components/systemHeader/SystemHeader";
-import Pizza from "./pages/pizza/Pizza";
 import Navbar from "./components/navbar/Navbar";
+import Main from "./pages/main/Main";
 
 const ROUTES = [
   {
     path: "/pizza",
-    element: <Pizza />,
+    element: <Main />,
   },
 ];
 

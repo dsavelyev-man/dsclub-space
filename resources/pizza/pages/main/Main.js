@@ -1,16 +1,12 @@
 import React from "react";
 import Carousel from "../../components/carousel/Carousel";
+import ProductList from "../../components/product/ProductList";
 
 const Pizza = () => {
   return (
     <>
       <Carousel />
-      <div
-        className="pizza"
-        style={{
-          height: "500vh",
-        }}
-      ></div>
+      <ProductList type={1} />
     </>
   );
 };

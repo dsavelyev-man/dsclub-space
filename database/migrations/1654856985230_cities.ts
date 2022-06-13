@@ -79,6 +79,7 @@ export default class extends BaseSchema {
           big = true;
           title = city[0];
         } else {
+          //@ts-ignore
           title = city;
         }
 

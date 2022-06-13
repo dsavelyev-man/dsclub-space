@@ -30,7 +30,14 @@ const SLIDES = [
 
 const Carousel = () => {
   return (
-    <RCarousel showArrows infiniteLoop showStatus={false} showThumbs={false}>
+    <RCarousel
+      showArrows
+      infiniteLoop
+      showStatus={false}
+      autoPlay
+      interval={8000}
+      showThumbs={false}
+    >
       {SLIDES.map((slide) => (
         <div
           style={{
