@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Box, Grid } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import Card from "./Card";
 
 const ProductList = (props) => {
@@ -19,21 +19,32 @@ const ProductList = (props) => {
   }, []);
 
   return (
-    <Box>
-      <Grid
-        container
-        columns={{
-          xs: 4,
+    <Box
+      sx={{
+        py: 2,
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <Box
+        sx={{
+          maxWidth: 1180,
         }}
-        spacing={2}
-        px={10}
-        pt={2}
       >
-        {products.map((product) => {
-          console.log(product);
-          return <Card key={product.id} product={product} />;
-        })}
-      </Grid>
+        <Grid
+          container
+          columns={{
+            xs: 4,
+          }}
+          spacing={2}
+        >
+          {products.map((product) => {
+            console.log(product);
+            return <Card key={product.id} product={product} />;
+          })}
+        </Grid>
+      </Box>
     </Box>
   );
 };
