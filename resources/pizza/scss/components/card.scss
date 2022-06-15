@@ -1,0 +1,13 @@
+.card-pizza__box {
+  animation: 0.4s card-pizza__animation forwards;
+}
+
+@keyframes card-pizza__animation {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

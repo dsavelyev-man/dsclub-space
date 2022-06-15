@@ -40,7 +40,6 @@ const ProductList = (props) => {
           spacing={2}
         >
           {products.map((product) => {
-            console.log(product);
             return <Card key={product.id} product={product} />;
           })}
         </Grid>

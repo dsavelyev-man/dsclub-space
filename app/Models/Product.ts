@@ -23,7 +23,7 @@ export default class Product extends BaseModel {
   @column()
   public price3: number;
 
-  @column({ serializeAs: null })
+  @column()
   public type_id: number;
 
   @column({ serializeAs: null })

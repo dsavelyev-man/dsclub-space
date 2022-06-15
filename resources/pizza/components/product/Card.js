@@ -8,13 +8,16 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import "../../scss/components/card.scss";
+import PizzaButton from "./PizzaButton";
+
+export const CARDSIZE = {
+  width: 280,
+  height: 480,
+};
 
 const Card = (props) => {
   let previewDescription = props.product.description;
-
-  const [currentPrice, setCurrentPrice] = React.useState(1);
-
-  console.log(previewDescription.length);
 
   if (previewDescription.length >= 85) {
     previewDescription = previewDescription.slice(0, 85);
@@ -25,12 +28,20 @@ const Card = (props) => {
 
     previewDescription += "...";
   }
+
+  let content = "";
+
+  switch (props.product.type_id) {
+    case 1:
+      content = <PizzaButton product={props.product} />;
+      break;
+  }
+
   return (
     <Grid item>
       <MCard
         sx={{
-          width: 280,
-          height: 480,
+          ...CARDSIZE,
           borderRadius: 2,
         }}
         variant="outlined"
@@ -73,16 +84,19 @@ const Card = (props) => {
                 padding: 1,
               }}
             >
-              sadsa
+              {content}
             </Box>
             <Box
               sx={{
                 fontWeight: 600,
-                fontSize: 20,
+                fontSize: 18,
                 padding: 1,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              от {props.product[`price${currentPrice}`]} ₽
+              от {props.product.price1} ₽
             </Box>
           </Box>
         </CardContent>
