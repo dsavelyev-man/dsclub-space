@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import "../../scss/components/card.scss";
-import PizzaButton from "./PizzaButton";
+import PizzaButton from "./pizza/PizzaButton";
 
 export const CARDSIZE = {
   width: 280,
@@ -36,6 +36,8 @@ const Card = (props) => {
       content = <PizzaButton product={props.product} />;
       break;
   }
+
+  const price = props.product.price1 || props.product.price2 || props.product.price3;
 
   return (
     <Grid item>
@@ -96,7 +98,7 @@ const Card = (props) => {
                 alignItems: "center",
               }}
             >
-              от {props.product.price1} ₽
+              {price && `от ${price} ₽`}
             </Box>
           </Box>
         </CardContent>

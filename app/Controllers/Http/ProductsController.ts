@@ -9,7 +9,11 @@ export default class ProductsController {
     const productQuery = Product.query().where("product_type", params.product_type);
 
     if (params.type) {
-      productQuery.andWhere("type_id", params.type);
+      if (params.type === "1") {
+        productQuery.andWhere("type_id", "6");
+      }
+
+      productQuery.orWhere("type_id", params.type);
     }
 
     const products = await productQuery;

@@ -4,10 +4,10 @@ import { Box } from "@mui/material";
 import { colors } from "../../theme";
 
 const NAVIGATION = [
-  {
-    to: "/pizza/category/stock",
-    label: "АКЦИИ",
-  },
+  // {
+  //   to: "/pizza/category/stock",
+  //   label: "АКЦИИ",
+  // },
   {
     to: "/pizza/category/pizza",
     label: "ПИЦЦА",

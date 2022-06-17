@@ -20,4 +20,8 @@ const App = () => {
 
 const root = createRoot(document.getElementById("dsclub"));
 
-root.render(<App />);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);

@@ -1,14 +1,41 @@
 import React from "react";
-import Button, { ButtonWithBackground } from "./Button";
-import { CARDSIZE } from "./Card";
+import Button, { ButtonWithBackground } from "../Button";
+import { CARDSIZE } from "../Card";
 import { Box, Typography } from "@mui/material";
+import SelectThickness from "./SelectThickness";
+import Size from "./Size";
+import Cheese from "./Cheese";
 
 const PizzaButton = (props) => {
   const [open, setOpen] = React.useState(false);
-  const [currentPrice, setCurrentPrice] = React.useState(1);
+  const [currentSize, setCurrentSize] = React.useState(1);
+  const [thickness, setThickness] = React.useState(0);
+  const [ingredients, setIngredients] = React.useState([]);
 
   const changeOpen = () => {
     setOpen((s) => !s);
+  };
+
+  const price = props.product[`price${currentSize}`];
+
+  const changeSize = (value) => {
+    setCurrentSize(value);
+  };
+
+  const changeThickness = (value) => {
+    setThickness(value);
+  };
+
+  const addIngredient = (value) => {
+    setIngredients((s) => {
+      const withoutIng = s.filter((ing) => ing.id !== value.id);
+
+      if (withoutIng.length === s.length) {
+        return [...s, value];
+      } else {
+        return withoutIng;
+      }
+    });
   };
 
   return (
@@ -53,6 +80,9 @@ const PizzaButton = (props) => {
               bottom: 0,
             }}
           >
+            <Cheese addIngredient={addIngredient} />
+            <Size product={props.product} size={currentSize} changeSize={changeSize} />
+            <SelectThickness thickness={thickness} changeThickness={changeThickness} />
             <ButtonWithBackground fullWidth>
               <Typography
                 sx={{
@@ -66,7 +96,7 @@ const PizzaButton = (props) => {
                   fontWeight: 600,
                 }}
               >
-                {props.product.price1} ₽
+                {price} ₽
               </Typography>
             </ButtonWithBackground>
           </Box>
