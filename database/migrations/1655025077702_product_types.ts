@@ -5,7 +5,7 @@ export default class extends BaseSchema {
   protected tableName = "product_types";
 
   public async up() {
-    this.schema.createTable(this.tableName, (table) => {
+    this.schema.createTable(this.tableName, async (table) => {
       table.increments("id");
 
       table.string("title", 255).notNullable();
@@ -26,7 +26,7 @@ export default class extends BaseSchema {
       ];
 
       for (const type of types) {
-        ProductType.create({
+        await ProductType.create({
           title: type,
         });
       }

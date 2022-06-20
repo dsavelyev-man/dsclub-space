@@ -5,12 +5,15 @@ import { Box, Typography } from "@mui/material";
 import SelectThickness from "./SelectThickness";
 import Size from "./Size";
 import Cheese from "./Cheese";
+import { useDispatch } from "react-redux";
+import { addBasket } from "../../../store/reducers/basket/basketReducer";
 
 const PizzaButton = (props) => {
   const [open, setOpen] = React.useState(false);
   const [currentSize, setCurrentSize] = React.useState(1);
   const [thickness, setThickness] = React.useState(0);
   const [ingredients, setIngredients] = React.useState([]);
+  const dispatch = useDispatch();
 
   const changeOpen = () => {
     setOpen((s) => !s);
@@ -36,6 +39,19 @@ const PizzaButton = (props) => {
         return withoutIng;
       }
     });
+  };
+
+  const add = () => {
+    const product = {
+      data: {
+        size: currentSize,
+        thickness,
+        ingredients,
+      },
+      ...props.product,
+    };
+
+    dispatch(addBasket(product));
   };
 
   return (
@@ -80,10 +96,13 @@ const PizzaButton = (props) => {
               bottom: 0,
             }}
           >
-            <Cheese addIngredient={addIngredient} />
+            <Cheese
+              active={!!ingredients.find((ing) => ing.id === 1)}
+              addIngredient={addIngredient}
+            />
             <Size product={props.product} size={currentSize} changeSize={changeSize} />
             <SelectThickness thickness={thickness} changeThickness={changeThickness} />
-            <ButtonWithBackground fullWidth>
+            <ButtonWithBackground onClick={add} fullWidth>
               <Typography
                 sx={{
                   fontWeight: 600,

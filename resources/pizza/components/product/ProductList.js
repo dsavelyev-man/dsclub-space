@@ -16,7 +16,7 @@ const ProductList = (props) => {
     };
 
     getProducts();
-  }, []);
+  }, [props.type]);
 
   return (
     <Box

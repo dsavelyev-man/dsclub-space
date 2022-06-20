@@ -3,7 +3,7 @@ import { MenuItem, Select } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import RoomServiceIcon from "@mui/icons-material/RoomService";
-import { setType } from "../../store/reducers/city/deliveryReducer";
+import { setType } from "../../store/reducers/delivery/deliveryReducer";
 
 const iconSx = {
   marginRight: 1,

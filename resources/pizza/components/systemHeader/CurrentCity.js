@@ -2,7 +2,7 @@ import React from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSetCity } from "../../store/reducers/city/deliveryReducer";
+import { fetchSetCity } from "../../store/reducers/delivery/deliveryReducer";
 import RoomIcon from "@mui/icons-material/Room";
 
 const CurrentCity = (props) => {

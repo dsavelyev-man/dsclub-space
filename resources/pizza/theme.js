@@ -10,6 +10,9 @@ export const colors = {
     main: "rgba(62, 72, 89, 0.5)",
     contrastText: "rgb(255,255,255)",
   },
+  success: {
+    main: "#29ff13",
+  },
   domino: {
     main: "rgb(227, 24, 54)",
     contrastText: "rgb(255,255,255)",

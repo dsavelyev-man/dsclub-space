@@ -3,7 +3,7 @@ import { Box, Modal } from "@mui/material";
 import axios from "axios";
 import City from "./City";
 import { useDispatch } from "react-redux";
-import { setCity } from "../../store/reducers/city/deliveryReducer";
+import { setCity } from "../../store/reducers/delivery/deliveryReducer";
 
 const ModalCities = (props) => {
   const [cities, setCities] = React.useState([]);

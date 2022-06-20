@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import "../../scss/components/card.scss";
 import PizzaButton from "./pizza/PizzaButton";
+import PizzaConstructor from "./pizza/PizzaConstructor";
 
 export const CARDSIZE = {
   width: 280,
@@ -34,6 +35,9 @@ const Card = (props) => {
   switch (props.product.type_id) {
     case 1:
       content = <PizzaButton product={props.product} />;
+      break;
+    case 6:
+      content = <PizzaConstructor product={props.product} />;
       break;
   }
 
