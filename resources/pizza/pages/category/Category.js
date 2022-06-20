@@ -26,7 +26,12 @@ const Category = () => {
   }
 
   console.log(categoryId);
-  return <ProductList type={categoryId} />;
+  return (
+    <>
+      <div>nekit gay</div>
+      <ProductList type={categoryId} />
+    </>
+  );
 };
 
 export default Category;
