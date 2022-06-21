@@ -20,6 +20,7 @@ const CurrentCity = (props) => {
       <Button
         onClick={props.changeOpen}
         color="white"
+        className="navbar__current-city"
         startIcon={<RoomIcon />}
         endIcon={<ArrowDropDownIcon />}
         sx={{

@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material";
 
 export const colors = {
   white: {
-    main: "rgb(234,234,234)",
+    main: "rgb(241,241,241)",
     contrastText: "#141414",
   },
   promoCode: {

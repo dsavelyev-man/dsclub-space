@@ -50,7 +50,11 @@ Encore.addEntry("pizza", "./resources/pizza/app.js");
 
 Encore.enableReactPreset();
 Encore.enableSassLoader();
-
+Encore.addLoader({
+  test: /\.svg$/i,
+  issuer: /\.[jt]sx?$/,
+  loader: "@svgr/webpack",
+});
 /*
 |--------------------------------------------------------------------------
 | Copy assets
@@ -96,7 +100,7 @@ Encore.disableSingleRuntimeChunk();
 |--------------------------------------------------------------------------
 |
 | It is always nice to cleanup the build output before creating a build. It
-| will ensure that all unused files from the previous build are removed.
+| will ensure that all unused files fsvgrom the previous build are removed.
 |
 */
 Encore.cleanupOutputBeforeBuild();

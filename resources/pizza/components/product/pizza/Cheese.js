@@ -12,6 +12,7 @@ const Cheese = (props) => {
     props.addIngredient({
       id: 1,
       name: "Сыр x2",
+      price: 58,
     });
   };
 
@@ -19,48 +20,57 @@ const Cheese = (props) => {
     <Box
       sx={{
         display: "flex",
-        height: 28,
+        height: 24,
         alignItems: "center",
         justifyContent: "flex-end",
-        cursor: "pointer",
       }}
-      onClick={add}
     >
-      <Button
+      <Box
         sx={{
-          "border": "none",
-          "backgroundColor": props.active ? colors.domino.main : colors.white.main,
-          "color": props.active ? colors.domino.contrastText : colors.white.contrastText,
-          "padding": 1,
-          "minWidth": 28,
-          "width": 28,
-          "height": 28,
-          "marginRight": 1,
-
-          ":hover": {
-            border: "none",
-            backgroundColor: props.active ? colors.domino.main : colors.white.main,
-          },
+          display: "flex",
+          cursor: "pointer",
+          alignItems: "center",
         }}
-        variant="outlined"
+        onClick={add}
       >
-        {props.active ? (
-          <DoneIcon
-            sx={{
-              height: 20,
-              width: 20,
-            }}
-          />
-        ) : (
-          <AddIcon
-            sx={{
-              height: 20,
-              width: 20,
-            }}
-          />
-        )}
-      </Button>
-      <Typography>Сыр x2</Typography>
+        <Button
+          sx={{
+            "border": "none",
+            "backgroundColor": props.active ? colors.domino.main : colors.white.main,
+            "color": props.active ? colors.domino.contrastText : colors.white.contrastText,
+            "padding": 1,
+            "minWidth": 24,
+            "width": 24,
+            "height": 24,
+            "marginRight": 1,
+
+            ":hover": {
+              border: "none",
+              backgroundColor: props.active ? colors.domino.main : colors.white.main,
+            },
+          }}
+          variant="outlined"
+        >
+          {props.active ? (
+            <DoneIcon
+              sx={{
+                height: 16,
+                width: 16,
+              }}
+            />
+          ) : (
+            <AddIcon
+              sx={{
+                height: 16,
+                width: 16,
+              }}
+            />
+          )}
+        </Button>
+        <Typography fontSize={12} fontWeight={700}>
+          Сыр x2
+        </Typography>
+      </Box>
     </Box>
   );
 };

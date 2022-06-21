@@ -24,9 +24,15 @@ const DeliveryType = () => {
       color="white"
       variant="outlined"
       sx={{
-        marginRight: 4,
-        width: 150,
+        "marginRight": 4,
+        "width": 150,
+
+        "& .MuiSelect-select": {
+          alignItems: "center",
+          display: "flex",
+        },
       }}
+      className="navbar__delivery-type"
       onChange={setDelivery}
       value={delivery}
     >

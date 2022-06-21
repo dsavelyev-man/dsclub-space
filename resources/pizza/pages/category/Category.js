@@ -28,7 +28,6 @@ const Category = () => {
   console.log(categoryId);
   return (
     <>
-      <div>nekit gay</div>
       <ProductList type={categoryId} />
     </>
   );

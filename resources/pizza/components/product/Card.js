@@ -11,6 +11,7 @@ import {
 import "../../scss/components/card.scss";
 import PizzaButton from "./pizza/PizzaButton";
 import PizzaConstructor from "./pizza/PizzaConstructor";
+import OtherButton from "./other/OtherButton";
 
 export const CARDSIZE = {
   width: 280,
@@ -39,6 +40,8 @@ const Card = (props) => {
     case 6:
       content = <PizzaConstructor product={props.product} />;
       break;
+    default:
+      content = <OtherButton product={props.product} />;
   }
 
   const price = props.product.price1 || props.product.price2 || props.product.price3;

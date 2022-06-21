@@ -2,17 +2,13 @@ import React from "react";
 import Button, { ButtonWithBackground } from "../Button";
 import { CARDSIZE } from "../Card";
 import { Box, Typography } from "@mui/material";
-import SelectThickness from "./SelectThickness";
-import Size from "./Size";
-import Cheese from "./Cheese";
 import { useDispatch } from "react-redux";
 import { addBasket } from "../../../store/reducers/basket/basketReducer";
+import Size from "./Size";
 
-const PizzaButton = (props) => {
+const OtherButton = (props) => {
   const [open, setOpen] = React.useState(false);
   const [currentSize, setCurrentSize] = React.useState(1);
-  const [thickness, setThickness] = React.useState(0);
-  const [ingredients, setIngredients] = React.useState([]);
   const dispatch = useDispatch();
 
   const changeOpen = () => {
@@ -35,34 +31,14 @@ const PizzaButton = (props) => {
     price = props.product[`price${currentSize}`];
   }
 
-  ingredients.map((ing) => (price = price + ing.price));
-
   const changeSize = (value) => {
     setCurrentSize(value);
-  };
-
-  const changeThickness = (value) => {
-    setThickness(value);
-  };
-
-  const addIngredient = (value) => {
-    setIngredients((s) => {
-      const withoutIng = s.filter((ing) => ing.id !== value.id);
-
-      if (withoutIng.length === s.length) {
-        return [...s, value];
-      } else {
-        return withoutIng;
-      }
-    });
   };
 
   const add = () => {
     const product = {
       data: {
         size: currentSize,
-        thickness,
-        ingredients,
         price,
       },
       ...props.product,
@@ -113,12 +89,7 @@ const PizzaButton = (props) => {
               bottom: 0,
             }}
           >
-            <Cheese
-              active={!!ingredients.find((ing) => ing.id === 1)}
-              addIngredient={addIngredient}
-            />
             <Size product={props.product} size={currentSize} changeSize={changeSize} />
-            <SelectThickness thickness={thickness} changeThickness={changeThickness} />
             <ButtonWithBackground onClick={add} fullWidth>
               <Typography
                 sx={{
@@ -143,4 +114,4 @@ const PizzaButton = (props) => {
   );
 };
 
-export default PizzaButton;
+export default OtherButton;

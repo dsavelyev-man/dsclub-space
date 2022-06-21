@@ -6,8 +6,8 @@ const STab = styled(Tab)({
   // backgroundColor: colors.white.main,
   "color": colors.domino.main,
   "padding": 0,
-  "minHeight": "24px",
   "textTransform": "capitalize",
+  "minHeight": "24px",
 
   "&.Mui-selected": {
     color: colors.domino.main,
@@ -48,9 +48,9 @@ const Size = (props) => {
       value={props.size - 1}
       aria-label="basic tabs example"
     >
-      {props.product.price1 && <STab label="20 см" />}
-      {props.product.price2 && <STab label="28 см" />}
-      {props.product.price3 && <STab label="33 см" />}
+      {props.product.price1 && <STab label="Стандартная" />}
+      {props.product.price2 && <STab label="Средняя" />}
+      {props.product.price3 && <STab label="Большая" />}
     </Tabs>
   );
 };

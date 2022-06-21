@@ -41,6 +41,7 @@
     "@babel/preset-react": "^7.0.0",
     "@japa/preset-adonis": "^1.1.0",
     "@japa/runner": "^2.0.9",
+    "@svgr/webpack": "^6.2.1",
     "@symfony/webpack-encore": "^2.1.0",
     "adonis-preset-ts": "^2.1.0",
     "eslint": "^8.17.0",
