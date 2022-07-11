@@ -4,7 +4,31 @@ import { Link } from "react-router-dom";
 import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
 import { colors } from "../../theme";
 
-const Logo = () => {
+const Logo = (props) => {
+  let styles;
+
+  if (props.isMd) {
+    styles = {
+      typography: {
+        marginRight: 2,
+      },
+      logo: {
+        height: 28,
+        width: 28,
+      },
+    };
+  } else {
+    styles = {
+      typography: {
+        marginRight: 4,
+      },
+      logo: {
+        height: 40,
+        width: 40,
+      },
+    };
+  }
+
   return (
     <Box
       sx={{
@@ -25,12 +49,12 @@ const Logo = () => {
             alignItems: "center",
             color: colors.white.main,
             fontWeight: 600,
-            marginRight: 4,
+            ...styles.typography,
           }}
           variant="h5"
         >
-          <LocalPizzaIcon fontSize="large" />
-          Domino`s
+          <LocalPizzaIcon sx={styles.logo} />
+          {!props.isMd && "Domino`s"}
         </Typography>
       </Link>
     </Box>

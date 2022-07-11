@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Box } from "@mui/material";
-import { colors } from "../../theme";
+import { Box, useMediaQuery } from "@mui/material";
+import theme, { colors } from "../../theme";
 
 const NAVIGATION = [
   // {
@@ -30,11 +30,35 @@ const NAVIGATION = [
   },
 ];
 
-const Links = () => {
+const Links = (props) => {
+  let styles;
+
+  if (props.isMd) {
+    styles = {
+      link: {
+        fontSize: 12,
+        marginRight: 10,
+      },
+      box: {
+        overflowX: "auto",
+        marginRight: 1,
+      },
+    };
+  } else {
+    styles = {
+      link: {
+        fontSize: 18,
+        marginRight: 30,
+      },
+      box: {},
+    };
+  }
+
   return (
     <Box
       sx={{
         display: "flex",
+        ...styles.box,
       }}
     >
       {NAVIGATION.map((link) => (
@@ -44,8 +68,8 @@ const Links = () => {
             display: "flex",
             alignItems: "center",
             textDecoration: "none",
-            marginRight: 30,
             fontFamily: 'Roboto","Helvetica","Arial",sans-serif',
+            ...styles.link,
           }}
           key={link.to}
           to={link.to}

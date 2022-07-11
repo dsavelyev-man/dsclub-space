@@ -1,37 +1,89 @@
 import React from "react";
-import { Box, Container } from "@mui/material";
-import PromoCode from "./PromoCode";
+import { Box, Container, useMediaQuery } from "@mui/material";
+// import PromoCode from "./PromoCode";
 import Links from "./Links";
 import Logo from "./Logo";
 import Basket from "./Basket";
-import { colors } from "../../theme";
+import theme, { colors } from "../../theme";
+import LoginIcon from "@mui/icons-material/Login";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const isMd = useMediaQuery(theme.breakpoints.down("md"));
+
+  let styles;
+
+  if (isMd) {
+    styles = {
+      navbar: {
+        padding: "8px",
+        display: "flex",
+        justifyContent: "space-between",
+      },
+      otherBox: {
+        justifyContent: "center",
+        alignItems: "center",
+      },
+    };
+  } else {
+    styles = {
+      navbar: {
+        padding: 2,
+      },
+      otherBox: {},
+    };
+  }
+
   return (
     <Box
       sx={{
         backgroundColor: colors.navbar.main,
-        padding: 2,
         position: "sticky",
         zIndex: 10,
         top: 0,
+        ...styles.navbar,
       }}
     >
       <Container
         sx={{
           display: "flex",
+          padding: 0,
         }}
       >
-        <Logo />
-        <Links />
+        <Logo isMd={isMd} />
+        <Links isMd={isMd} />
         <Box
           sx={{
             marginLeft: "auto",
             display: "flex",
+            ...styles.otherBox,
           }}
         >
-          <PromoCode />
-          <Basket />
+          {!isMd ? (
+            <>
+              {/*<PromoCode />*/}
+              <Basket />
+            </>
+          ) : (
+            <Link
+              to="/pizza/login"
+              style={{
+                color: colors.white.main,
+                marginLeft: "auto",
+                display: "flex",
+                alignItems: "center",
+                textDecoration: "none",
+                fontSize: 18,
+                fontWeight: 600,
+              }}
+            >
+              <LoginIcon
+                sx={{
+                  marginRight: 1,
+                }}
+              />
+            </Link>
+          )}
         </Box>
       </Container>
     </Box>

@@ -21,7 +21,7 @@ const Routing = () => {
   return (
     <BrowserRouter>
       <SystemHeader />
-      {/*<Navbar />*/}
+      <Navbar />
       {/*<Routes>*/}
       {/*  {ROUTES.map((route) => (*/}
       {/*    <Route path={route.path} key={route.path} element={route.element} />*/}
