@@ -19,6 +19,63 @@ export const CARDSIZE = {
 };
 
 const Card = (props) => {
+  let styles;
+
+  if (props.isMd) {
+    styles = {
+      box: {
+        display: "flex",
+        marginBottom: 1,
+        mx: 1,
+      },
+      image: {
+        height: 115,
+        maxWidth: 115,
+        flex: 1,
+        mr: "5px",
+      },
+      content: {
+        "flex": 1,
+        "padding": "1px",
+
+        ":last-child": {
+          padding: 0,
+        },
+      },
+      heading: {
+        fontSize: 15,
+      },
+      text: {
+        fontSize: 12,
+      },
+      price: {
+        fontSize: 12,
+        pr: 1,
+      },
+    };
+  } else {
+    styles = {
+      box: {
+        ...CARDSIZE,
+      },
+      image: {
+        width: 280,
+        height: 280,
+      },
+      content: {
+        height: 160,
+      },
+      heading: {},
+      text: {
+        fontSize: 14,
+      },
+      price: {
+        padding: 1,
+        fontSize: 18,
+      },
+    };
+  }
+
   let previewDescription = props.product.description;
 
   if (previewDescription.length >= 85) {
@@ -35,83 +92,77 @@ const Card = (props) => {
 
   switch (props.product.type_id) {
     case 1:
-      content = <PizzaButton product={props.product} />;
+      content = <PizzaButton isMd={props.isMd} product={props.product} />;
       break;
     case 6:
-      content = <PizzaConstructor product={props.product} />;
+      content = <PizzaConstructor isMd={props.isMd} product={props.product} />;
       break;
     default:
-      content = <OtherButton product={props.product} />;
+      content = <OtherButton isMd={props.isMd} product={props.product} />;
   }
 
   const price = props.product.price1 || props.product.price2 || props.product.price3;
 
-  return (
-    <Grid item>
-      <MCard
+  const mcard = (
+    <MCard
+      sx={{
+        borderRadius: 2,
+        ...styles.box,
+      }}
+      variant="outlined"
+    >
+      <CardMedia sx={styles.image} height={280} image={props.product.image_url} />
+      <CardContent
         sx={{
-          ...CARDSIZE,
-          borderRadius: 2,
+          position: "relative",
+          ...styles.content,
         }}
-        variant="outlined"
       >
-        <CardMedia
+        <Typography variant="h6" sx={styles.heading}>
+          {props.product.title}
+        </Typography>
+        <Typography
           sx={{
-            width: 280,
-            height: 280,
-          }}
-          height={280}
-          image={props.product.image_url}
-        />
-        <CardContent
-          sx={{
-            position: "relative",
-            height: 160,
+            color: "grey.600",
+            ...styles.text,
           }}
         >
-          <Typography variant="h6">{props.product.title}</Typography>
-          <Typography
-            sx={{
-              fontSize: 14,
-              color: "grey.600",
-            }}
-          >
-            {previewDescription}
-          </Typography>
+          {previewDescription}
+        </Typography>
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
           <Box
             sx={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
+              padding: 1,
             }}
           >
-            <Box
-              sx={{
-                padding: 1,
-              }}
-            >
-              {content}
-            </Box>
-            <Box
-              sx={{
-                fontWeight: 600,
-                fontSize: 18,
-                padding: 1,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              {price && `от ${price} ₽`}
-            </Box>
+            {content}
           </Box>
-        </CardContent>
-      </MCard>
-    </Grid>
+          <Box
+            sx={{
+              fontWeight: 600,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              ...styles.price,
+            }}
+          >
+            {price && `от ${price} ₽`}
+          </Box>
+        </Box>
+      </CardContent>
+    </MCard>
   );
+
+  return props.isMd ? mcard : <Grid item>{mcard}</Grid>;
 };
 
 export default Card;

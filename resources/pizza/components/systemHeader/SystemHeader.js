@@ -65,7 +65,7 @@ const SystemHeader = () => {
           </>
         )}
       </Container>
-      {open && <ModalCitites open={open} changeOpen={changeOpen} />}
+      {open && <ModalCitites open={open} isMd={isMd} changeOpen={changeOpen} />}
     </Box>
   );
 };

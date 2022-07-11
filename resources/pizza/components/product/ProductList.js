@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "axios";
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Container, Grid, useMediaQuery } from "@mui/material";
 import Card from "./Card";
+import theme from "../../theme";
 
 const ProductList = (props) => {
   const [products, setProducts] = React.useState([]);
+  const isMd = useMediaQuery(theme.breakpoints.down("md"));
 
   React.useEffect(() => {
     const getProducts = async () => {
@@ -32,17 +34,25 @@ const ProductList = (props) => {
           maxWidth: 1180,
         }}
       >
-        <Grid
-          container
-          columns={{
-            xs: 4,
-          }}
-          spacing={2}
-        >
-          {products.map((product) => {
-            return <Card key={product.id} product={product} />;
-          })}
-        </Grid>
+        {isMd ? (
+          <Box>
+            {products.map((product) => {
+              return <Card isMd={isMd} key={product.id} product={product} />;
+            })}
+          </Box>
+        ) : (
+          <Grid
+            container
+            columns={{
+              xs: 4,
+            }}
+            spacing={2}
+          >
+            {products.map((product) => {
+              return <Card isMd={isMd} key={product.id} product={product} />;
+            })}
+          </Grid>
+        )}
       </Box>
     </Box>
   );

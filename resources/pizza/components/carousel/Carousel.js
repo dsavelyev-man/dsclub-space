@@ -2,8 +2,8 @@ import React from "react";
 import { Carousel as RCarousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Box } from "@mui/material";
-import { colors } from "../../theme";
+import { Box, useMediaQuery } from "@mui/material";
+import theme, { colors } from "../../theme";
 
 const SLIDES = [
   {
@@ -29,9 +29,33 @@ const SLIDES = [
 ];
 
 const Carousel = () => {
+  const isMd = useMediaQuery(theme.breakpoints.down("md"));
+
+  let styles;
+
+  if (isMd) {
+    styles = {
+      box: {
+        padding: 8,
+      },
+      image: {
+        borderRadius: 8,
+      },
+    };
+  } else {
+    styles = {
+      box: {
+        backgroundColor: colors.navbar.main,
+      },
+      image: {
+        maxWidth: "80vw",
+      },
+    };
+  }
   return (
     <RCarousel
-      showArrows
+      showArrows={!isMd}
+      swipeable={true}
       infiniteLoop
       showStatus={false}
       autoPlay
@@ -41,8 +65,8 @@ const Carousel = () => {
       {SLIDES.map((slide) => (
         <div
           style={{
-            backgroundColor: colors.navbar.main,
             position: "relative",
+            ...styles.box,
           }}
           key={slide.image}
         >
@@ -57,7 +81,7 @@ const Carousel = () => {
           />
           <img
             style={{
-              maxWidth: "80vw",
+              ...styles.image,
             }}
             src={slide.image}
           />

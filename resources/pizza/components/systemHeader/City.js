@@ -20,7 +20,7 @@ const City = (props) => {
     <Typography
       sx={{
         padding: "8px 4px",
-        width: "18%",
+        width: props.isMd ? "auto" : "18%",
         fontSize: 14,
         cursor: "pointer",
         fontWeight: weight,

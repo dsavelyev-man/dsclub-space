@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Modal } from "@mui/material";
+import { Box, Drawer, Modal } from "@mui/material";
 import axios from "axios";
 import City from "./City";
 import { useDispatch } from "react-redux";
@@ -8,6 +8,8 @@ import { setCity } from "../../store/reducers/delivery/deliveryReducer";
 const ModalCities = (props) => {
   const [cities, setCities] = React.useState([]);
   const dispatch = useDispatch();
+
+  console.log(props);
 
   React.useEffect(() => {
     const getCities = async () => {
@@ -31,7 +33,21 @@ const ModalCities = (props) => {
     props.changeOpen();
   };
 
-  return (
+  return props.isMd ? (
+    <Drawer anchor="bottom" open={props.open}>
+      <Box
+        container
+        sx={{
+          bgcolor: "background.paper",
+          padding: 2,
+        }}
+      >
+        {cities.map((city) => (
+          <City isMd={props.isMd} key={city.id} city={city} selectCity={selectCity} />
+        ))}
+      </Box>
+    </Drawer>
+  ) : (
     <Modal open={props.open} onClose={props.changeOpen}>
       <Box
         container
