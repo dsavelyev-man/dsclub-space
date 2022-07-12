@@ -31,6 +31,7 @@ const ProductList = (props) => {
     >
       <Box
         sx={{
+          width: isMd ? "100%" : "auto",
           maxWidth: 1180,
         }}
       >

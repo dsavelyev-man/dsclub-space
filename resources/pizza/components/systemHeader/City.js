@@ -12,7 +12,7 @@ const City = (props) => {
     weight = 600;
   }
 
-  if (title.length >= 15) {
+  if (title.length >= 15 && !props.isMd) {
     title = title.slice(0, -4) + "...";
   }
 

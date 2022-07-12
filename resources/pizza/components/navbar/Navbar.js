@@ -59,12 +59,8 @@ const Navbar = () => {
             ...styles.otherBox,
           }}
         >
-          {!isMd ? (
-            <>
-              {/*<PromoCode />*/}
-              <Basket />
-            </>
-          ) : (
+          <Basket isMd={isMd} />
+          {isMd && (
             <Link
               to="/pizza/login"
               style={{
