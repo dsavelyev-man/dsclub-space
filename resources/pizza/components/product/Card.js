@@ -78,10 +78,10 @@ const Card = (props) => {
 
   let previewDescription = props.product.description;
 
-  if (previewDescription.length >= 85) {
-    previewDescription = previewDescription.slice(0, 85);
+  if (previewDescription.length >= 85 || (previewDescription.length >= 60 && props.isMd)) {
+    previewDescription = previewDescription.slice(0, props.isMd ? 60 : 85);
 
-    if (previewDescription.endsWith(",")) {
+    if (previewDescription.endsWith(",") || previewDescription.endsWith(" ")) {
       previewDescription = previewDescription.slice(0, -1);
     }
 

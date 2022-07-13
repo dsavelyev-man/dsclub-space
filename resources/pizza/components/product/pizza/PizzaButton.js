@@ -20,6 +20,7 @@ const PizzaButton = (props) => {
   };
 
   let price;
+  let size;
 
   const price1 = props.product[`price1`];
   const price2 = props.product[`price2`];
@@ -33,6 +34,18 @@ const PizzaButton = (props) => {
     price = price3;
   } else {
     price = props.product[`price${currentSize}`];
+  }
+
+  switch (currentSize) {
+    case 1:
+      size = "20 см";
+      break;
+    case 2:
+      size = "28 см";
+      break;
+    case 3:
+      size = "33 см";
+      break;
   }
 
   ingredients.map((ing) => (price = price + ing.price));
@@ -60,7 +73,7 @@ const PizzaButton = (props) => {
   const add = () => {
     const product = {
       data: {
-        size: currentSize,
+        size,
         thickness,
         ingredients,
         price,

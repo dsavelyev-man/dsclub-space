@@ -4,6 +4,7 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { colors } from "../../theme";
 import { useSelector } from "react-redux";
 import { createPortal } from "react-dom";
+import BasketPopover from "./BasketPopover";
 
 const BasketButton = styled(Button)({
   "backgroundColor": colors.domino.main,
@@ -18,10 +19,19 @@ const BasketButton = styled(Button)({
 
 const Basket = (props) => {
   const basket = useSelector((state) => state.basket);
+  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const changeOpen = (e) => {
+    if (basket.products.length > 0) {
+      setOpen((s) => !s);
+      setAnchorEl(e.currentTarget);
+    }
+  };
 
   const content = (
     <Badge title="Корзина" badgeContent={basket.products.length} overlap="circular" color="primary">
-      <BasketButton>
+      <BasketButton aria-describedby="basket" onClick={changeOpen}>
         <ShoppingBasketIcon />
       </BasketButton>
     </Badge>
@@ -46,7 +56,10 @@ const Basket = (props) => {
       ""
     )
   ) : (
-    <Box>{content}</Box>
+    <Box>
+      {content}
+      <BasketPopover anchorEl={anchorEl} basket={basket} open={open} changeOpen={changeOpen} />
+    </Box>
   );
 };
 

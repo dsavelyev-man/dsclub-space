@@ -27,11 +27,32 @@ export const basketSlice = createSlice({
   initialState,
   reducers: {
     addBasket: (state, action) => {
-      state.products.push(action.payload);
+      const duplicateIndex = state.products.findIndex(
+        (product) => product.id === action.payload.id
+      );
 
-      state.lastUpdate = "" + currentDate;
+      if (duplicateIndex === -1) {
+        const data = {
+          ...action.payload,
+          count: 1,
+        };
 
-      window.localStorage.setItem("basket", JSON.stringify(state));
+        state.products.push(data);
+
+        state.lastUpdate = "" + currentDate;
+
+        window.localStorage.setItem("basket", JSON.stringify(state));
+      } else {
+        const duplicate = state.products[duplicateIndex];
+
+        const isDuplicate = JSON.stringify(duplicate.data) === JSON.stringify(action.payload.data);
+
+        if (isDuplicate) {
+          duplicate.count = duplicate.count + 1;
+        }
+
+        window.localStorage.setItem("basket", JSON.stringify(state));
+      }
     },
   },
 });

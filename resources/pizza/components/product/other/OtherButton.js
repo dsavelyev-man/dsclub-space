@@ -16,6 +16,7 @@ const OtherButton = (props) => {
   };
 
   let price;
+  let size;
 
   const price1 = props.product[`price1`];
   const price2 = props.product[`price2`];
@@ -23,12 +24,25 @@ const OtherButton = (props) => {
 
   if (price1 && currentSize === 1) {
     price = price1;
+    size = "Стандартная";
   } else if (!price1 && price2 && currentSize === 1) {
     price = price2;
+    size = "Средняя";
   } else if (!price1 && price3 && currentSize === 2) {
     price = price3;
-  } else {
-    price = props.product[`price${currentSize}`];
+    size = "Большая";
+  }
+
+  switch (currentSize) {
+    case 1:
+      size = "Стандартная";
+      break;
+    case 2:
+      size = "Средняя";
+      break;
+    case 3:
+      size = "Большая";
+      break;
   }
 
   const changeSize = (value) => {
@@ -38,7 +52,7 @@ const OtherButton = (props) => {
   const add = () => {
     const product = {
       data: {
-        size: currentSize,
+        size,
         price,
       },
       ...props.product,
