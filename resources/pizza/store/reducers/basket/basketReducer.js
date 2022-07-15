@@ -31,11 +31,16 @@ export const basketSlice = createSlice({
   initialState,
   reducers: {
     addBasket: (state, action) => {
-      const duplicateIndex = state.products.findIndex(
-        (product) => product.id === action.payload.id
-      );
+      const duplicateIndexes = [];
+      // state.products.findIndex(
+      //   (product) => product.id === action.payload.id
+      // );
 
-      if (duplicateIndex === -1) {
+      state.products.forEach((product, index) => {
+        if (product.id === action.payload.id) duplicateIndexes.push(index);
+      });
+
+      if (duplicateIndexes.length === 0) {
         const data = {
           ...action.payload,
           count: 1,
@@ -48,12 +53,38 @@ export const basketSlice = createSlice({
 
         window.localStorage.setItem("basket", JSON.stringify(state));
       } else {
-        const duplicate = state.products[duplicateIndex];
+        let finded;
 
-        const isDuplicate = JSON.stringify(duplicate.data) === JSON.stringify(action.payload.data);
+        for (const duplicateIndex of duplicateIndexes) {
+          const duplicate = state.products[duplicateIndex];
 
-        if (isDuplicate && duplicate.count < 100) {
-          duplicate.count = duplicate.count + 1;
+          const isDuplicate =
+            JSON.stringify(duplicate.data) === JSON.stringify(action.payload.data);
+
+          console.log(
+            duplicateIndex,
+            isDuplicate,
+            JSON.stringify(duplicate.data),
+            action.payload.data
+          );
+
+          if (isDuplicate && duplicate.count < 100) {
+            duplicate.count = duplicate.count + 1;
+            finded = true;
+            break;
+          }
+        }
+
+        if (!finded) {
+          const data = {
+            ...action.payload,
+            count: 1,
+            searchId: state.products.length,
+          };
+
+          console.log(data, "aaaa");
+
+          state.products.push(data);
         }
 
         window.localStorage.setItem("basket", JSON.stringify(state));
