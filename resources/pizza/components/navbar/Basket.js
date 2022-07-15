@@ -2,9 +2,11 @@ import React from "react";
 import { Badge, Box, Button, styled } from "@mui/material";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { colors } from "../../theme";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { createPortal } from "react-dom";
 import BasketPopover from "./BasketPopover";
+import { setOpen } from "../../store/reducers/basket/basketReducer";
+import BasketDrawer from "./BasketDrawer";
 
 const BasketButton = styled(Button)({
   "backgroundColor": colors.domino.main,
@@ -19,13 +21,16 @@ const BasketButton = styled(Button)({
 
 const Basket = (props) => {
   const basket = useSelector((state) => state.basket);
-  const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const dispatch = useDispatch();
 
   const changeOpen = (e) => {
     if (basket.products.length > 0) {
-      setOpen((s) => !s);
-      setAnchorEl(e.currentTarget);
+      dispatch(setOpen(!basket.isOpen));
+
+      if (!props.isMd) {
+        setAnchorEl(e.currentTarget);
+      }
     }
   };
 
@@ -49,6 +54,7 @@ const Basket = (props) => {
           }}
         >
           {content}
+          <BasketDrawer anchorEl={anchorEl} basket={basket} changeOpen={changeOpen} />
         </Box>,
         document.body
       )
@@ -58,7 +64,7 @@ const Basket = (props) => {
   ) : (
     <Box>
       {content}
-      <BasketPopover anchorEl={anchorEl} basket={basket} open={open} changeOpen={changeOpen} />
+      <BasketPopover anchorEl={anchorEl} basket={basket} changeOpen={changeOpen} />
     </Box>
   );
 };

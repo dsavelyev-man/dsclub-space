@@ -42,7 +42,7 @@ const SystemHeader = () => {
       >
         <CurrentCity changeOpen={changeOpen} />
         <DeliveryType />
-        {!isMd && (
+        {!isMd && false && (
           <>
             <AverageTime />
             <Link

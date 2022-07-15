@@ -43,10 +43,10 @@ const Card = (props) => {
         },
       },
       heading: {
-        fontSize: 15,
+        fontSize: 14,
       },
       text: {
-        fontSize: 12,
+        fontSize: 11,
       },
       price: {
         fontSize: 12,

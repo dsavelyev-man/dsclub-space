@@ -1,7 +1,7 @@
 import React from "react";
 import Button, { ButtonWithBackground } from "../Button";
 import { CARDSIZE } from "../Card";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, SwipeableDrawer } from "@mui/material";
 import SelectThickness from "./SelectThickness";
 import Size from "./Size";
 import Cheese from "./Cheese";
@@ -14,10 +14,36 @@ const PizzaButton = (props) => {
   const [thickness, setThickness] = React.useState(0);
   const [ingredients, setIngredients] = React.useState([]);
   const dispatch = useDispatch();
+  let styles = {};
 
   const changeOpen = () => {
     setOpen((s) => !s);
   };
+
+  if (props.isMd) {
+    styles = {
+      class: "",
+      box: {
+        position: "static",
+        minHeight: CARDSIZE.height - 120,
+      },
+      button: {
+        fontSize: 12,
+        py: "4px",
+        px: "12px",
+      },
+    };
+  } else {
+    styles = {
+      class: "card-pizza__box",
+      box: {
+        position: "absolute",
+        width: CARDSIZE.width,
+        height: CARDSIZE.height - 120,
+      },
+      button: {},
+    };
+  }
 
   let price;
   let size;
@@ -28,24 +54,27 @@ const PizzaButton = (props) => {
 
   if (price1 && currentSize === 1) {
     price = price1;
+    size = "20 см";
   } else if (!price1 && price2 && currentSize === 1) {
     price = price2;
+    size = "28 см";
   } else if (!price1 && price3 && currentSize === 2) {
     price = price3;
+    size = "33 см";
   } else {
     price = props.product[`price${currentSize}`];
-  }
 
-  switch (currentSize) {
-    case 1:
-      size = "20 см";
-      break;
-    case 2:
-      size = "28 см";
-      break;
-    case 3:
-      size = "33 см";
-      break;
+    switch (currentSize) {
+      case 1:
+        size = "20 см";
+        break;
+      case 2:
+        size = "28 см";
+        break;
+      case 3:
+        size = "33 см";
+        break;
+    }
   }
 
   ingredients.map((ing) => (price = price + ing.price));
@@ -82,76 +111,88 @@ const PizzaButton = (props) => {
     };
 
     dispatch(addBasket(product));
+
+    if (props.isMd) changeOpen();
   };
+
+  const content = (
+    <Box
+      className={styles.class}
+      sx={{
+        ...styles.box,
+        left: 0,
+        bottom: 0,
+        background: "linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,1) 100%)",
+        borderTopLeftRadius: 18,
+        borderTopRightRadius: 18,
+        zIndex: 9,
+      }}
+    >
+      <Box
+        sx={{
+          padding: 2,
+        }}
+      >
+        <Typography variant="h6">{props.product.title}</Typography>
+        <Typography
+          sx={{
+            fontSize: 14,
+            color: "grey.600",
+          }}
+        >
+          {props.product.description}
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          position: "absolute",
+          marginBottom: 1,
+          px: "10px",
+          width: "calc(100% - 20px)",
+          bottom: 0,
+        }}
+      >
+        <Cheese active={!!ingredients.find((ing) => ing.id === 1)} addIngredient={addIngredient} />
+        <Size product={props.product} size={currentSize} changeSize={changeSize} />
+        <SelectThickness thickness={thickness} changeThickness={changeThickness} />
+        <ButtonWithBackground onClick={add} fullWidth>
+          <Typography
+            sx={{
+              fontWeight: 600,
+            }}
+          >
+            В корзину
+          </Typography>
+          <Typography
+            sx={{
+              fontWeight: 600,
+            }}
+          >
+            {price} ₽
+          </Typography>
+        </ButtonWithBackground>
+      </Box>
+    </Box>
+  );
 
   return (
     <>
-      {open && (
-        <Box
-          className="card-pizza__box"
-          sx={{
-            position: "absolute",
-            width: CARDSIZE.width,
-            height: CARDSIZE.height - 120,
-            left: 0,
-            bottom: 0,
-            background:
-              "linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,1) 100%)",
-            borderTopLeftRadius: 18,
-            borderTopRightRadius: 18,
-            zIndex: 9,
-          }}
-        >
-          <Box
-            sx={{
-              padding: 2,
-            }}
-          >
-            <Typography variant="h6">{props.product.title}</Typography>
-            <Typography
-              sx={{
-                fontSize: 14,
-                color: "grey.600",
-              }}
-            >
-              {props.product.description}
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              position: "absolute",
-              marginBottom: 1,
-              px: "10px",
-              width: "calc(100% - 20px)",
-              bottom: 0,
-            }}
-          >
-            <Cheese
-              active={!!ingredients.find((ing) => ing.id === 1)}
-              addIngredient={addIngredient}
-            />
-            <Size product={props.product} size={currentSize} changeSize={changeSize} />
-            <SelectThickness thickness={thickness} changeThickness={changeThickness} />
-            <ButtonWithBackground onClick={add} fullWidth>
-              <Typography
-                sx={{
-                  fontWeight: 600,
-                }}
-              >
-                В корзину
-              </Typography>
-              <Typography
-                sx={{
-                  fontWeight: 600,
-                }}
-              >
-                {price} ₽
-              </Typography>
-            </ButtonWithBackground>
-          </Box>
-        </Box>
-      )}
-      <Button onClick={changeOpen}>Выбрать</Button>
+      {open &&
+        (props.isMd ? (
+          <SwipeableDrawer onClose={changeOpen} onOpen={changeOpen} anchor="bottom" open={open}>
+            {content}
+          </SwipeableDrawer>
+        ) : (
+          content
+        ))}
+      <Button
+        sx={{
+          ...styles.button,
+        }}
+        onClick={changeOpen}
+      >
+        Выбрать
+      </Button>
     </>
   );
 };

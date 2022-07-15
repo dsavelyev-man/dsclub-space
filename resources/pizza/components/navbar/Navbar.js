@@ -60,7 +60,7 @@ const Navbar = () => {
           }}
         >
           <Basket isMd={isMd} />
-          {isMd && (
+          {isMd && false && (
             <Link
               to="/pizza/login"
               style={{

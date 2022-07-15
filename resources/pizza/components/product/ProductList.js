@@ -24,7 +24,7 @@ const ProductList = (props) => {
     <Box
       sx={{
         py: 2,
-        width: "100vw",
+        width: "auto",
         display: "flex",
         justifyContent: "center",
       }}

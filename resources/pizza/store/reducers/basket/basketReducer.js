@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 let initialState = {
   products: [],
   lastUpdate: null,
+  isOpen: false,
 };
 
 const date = dayjs();
@@ -18,7 +19,10 @@ if (localStorageBasket) {
   if (currentDate !== basket.lastUpdate) {
     window.localStorage.removeItem("basket");
   } else {
-    initialState = basket;
+    initialState = {
+      ...basket,
+      isOpen: false,
+    };
   }
 }
 
@@ -35,6 +39,7 @@ export const basketSlice = createSlice({
         const data = {
           ...action.payload,
           count: 1,
+          searchId: state.products.length,
         };
 
         state.products.push(data);
@@ -47,16 +52,45 @@ export const basketSlice = createSlice({
 
         const isDuplicate = JSON.stringify(duplicate.data) === JSON.stringify(action.payload.data);
 
-        if (isDuplicate) {
+        if (isDuplicate && duplicate.count < 100) {
           duplicate.count = duplicate.count + 1;
         }
 
         window.localStorage.setItem("basket", JSON.stringify(state));
       }
     },
+    addDuplicate: (state, action) => {
+      const index = state.products.findIndex((product) => action.payload === product.searchId);
+
+      const product = state.products[index];
+
+      if (product.count < 100) {
+        product.count = product.count + 1;
+
+        window.localStorage.setItem("basket", JSON.stringify(state));
+      }
+    },
+    removeBasket: (state, action) => {
+      const index = state.products.findIndex((product) => action.payload === product.searchId);
+
+      const product = state.products[index];
+
+      if (product.count > 1) {
+        product.count = product.count - 1;
+      } else {
+        state.products.splice(index, 1);
+
+        if (state.products.length === 0) state.isOpen = false;
+      }
+
+      window.localStorage.setItem("basket", JSON.stringify(state));
+    },
+    setOpen: (state, action) => {
+      state.isOpen = action.payload;
+    },
   },
 });
 
-export const { addBasket } = basketSlice.actions;
+export const { addBasket, addDuplicate, removeBasket, setOpen } = basketSlice.actions;
 
 export default basketSlice.reducer;

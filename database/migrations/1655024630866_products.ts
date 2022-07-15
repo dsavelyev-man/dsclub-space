@@ -34,12 +34,12 @@ export default class extends BaseSchema {
         price3?: number;
         product_type?: string;
       }[] = [
-        {
-          title: "Пицца-половинки",
-          image_url: "/images/pizza/products/1.jpeg",
-          description: "Собери свою пиццу - соедини две любимые пиццы",
-          type_id: 6,
-        },
+        // {
+        //   title: "Пицца-половинки",
+        //   image_url: "/images/pizza/products/1.jpeg",
+        //   description: "Собери свою пиццу - соедини две любимые пиццы",
+        //   type_id: 6,
+        // },
         {
           title: "Чикен Терияки",
           image_url: "/images/pizza/products/2.jpeg",
