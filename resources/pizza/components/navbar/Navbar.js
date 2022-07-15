@@ -18,6 +18,7 @@ const Navbar = () => {
       navbar: {
         padding: "8px",
         display: "flex",
+        transform: "translateY(-1px)",
         justifyContent: "space-between",
       },
       otherBox: {
