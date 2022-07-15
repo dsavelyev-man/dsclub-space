@@ -47,9 +47,11 @@ Encore.setPublicPath("/assets");
 */
 Encore.addEntry("app", "./resources/index/app.js");
 Encore.addEntry("pizza", "./resources/pizza/app.js");
+Encore.addEntry("editor", "./resources/editor/app.js");
 
 Encore.enableReactPreset();
 Encore.enableSassLoader();
+Encore.enablePostCssLoader(); //
 Encore.addLoader({
   test: /\.svg$/i,
   issuer: /\.[jt]sx?$/,

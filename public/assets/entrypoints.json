@@ -15,6 +15,14 @@
       "js": [
         "http://localhost:8080/assets/pizza.js"
       ]
+    },
+    "editor": {
+      "css": [
+        "http://localhost:8080/assets/editor.css"
+      ],
+      "js": [
+        "http://localhost:8080/assets/editor.js"
+      ]
     }
   }
 }

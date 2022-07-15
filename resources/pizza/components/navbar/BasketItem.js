@@ -15,7 +15,7 @@ const Btn = styled(Button)({
 
 const BasketItem = (props) => {
   const data = props.product.data;
-  console.log(data)
+  console.log(data);
   const dispatch = useDispatch();
 
   const onRemove = () => {
@@ -31,12 +31,12 @@ const BasketItem = (props) => {
     <Box
       className="basket__item"
       sx={{
-        display: "flex",
-        marginBottom: 2,
+        "display": "flex",
+        "marginBottom": 2,
 
         ":last-child": {
           marginBottom: 0,
-        }
+        },
       }}
     >
       <img height={140} src={props.product.image_url} />

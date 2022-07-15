@@ -61,13 +61,6 @@ export const basketSlice = createSlice({
           const isDuplicate =
             JSON.stringify(duplicate.data) === JSON.stringify(action.payload.data);
 
-          console.log(
-            duplicateIndex,
-            isDuplicate,
-            JSON.stringify(duplicate.data),
-            action.payload.data
-          );
-
           if (isDuplicate && duplicate.count < 100) {
             duplicate.count = duplicate.count + 1;
             finded = true;

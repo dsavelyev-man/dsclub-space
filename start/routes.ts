@@ -20,6 +20,14 @@
 
 import Route from "@ioc:Adonis/Core/Route";
 
+Route.get("/editor/*", async ({ view }) => {
+  return view.render("editor");
+});
+
+Route.get("/editor/", async ({ view }) => {
+  return view.render("editor");
+});
+
 Route.get("/pizza/*", async ({ view }) => {
   return view.render("pizza");
 });
