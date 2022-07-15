@@ -1,5 +1,26 @@
-this is my monorepo
+This is my monorepo.
 
-in has standard pizza delivery site and page HTML constructor 
+In has standard pizza delivery site and page HTML constructor.
 
-[![My Skills](https://skillicons.dev/icons?i=js,html,css,wasm)](https://skillicons.dev)
+Stack:
+  javascript (and typescript for backend),
+  react,
+  prettier and eslint,
+  webpack (encore version),
+  postcss,
+  scss,
+  redux
+  axios
+
+Pizza delivery:
+  material-ui
+  
+HTML constructor:
+  tailwindcss,
+  react-dnd
+  
+backend:
+  typescript
+  adonis,
+  adonis/lucid,
+
