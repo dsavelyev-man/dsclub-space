@@ -1,5 +1,7 @@
 import React from "react";
 import EdgesensorLowIcon from "@mui/icons-material/EdgesensorLow";
+import Heading from "./heading/Heading";
+import Button from "./button/Button";
 
 function WidgetsManager() {
   this.widgets = new Map();
@@ -8,18 +10,18 @@ function WidgetsManager() {
   this.widgets.set("heading", {
     name: "heading",
     title: "Heading",
-    componentPath: "widgets/heading/Heading",
+    component: Heading,
     icon: <EdgesensorLowIcon />,
-  })
+  });
   // heading
 
   // button
   this.widgets.set("button", {
     name: "button",
     title: "Button",
-    componentPath: "widgets/button/Button",
+    component: Button,
     icon: <EdgesensorLowIcon />,
-  })
+  });
   // button
 
   return {
@@ -27,10 +29,10 @@ function WidgetsManager() {
     toArray: () => {
       const widgets = [];
 
-      this.widgets.forEach(widget => widgets.push(widget));
+      this.widgets.forEach((widget) => widgets.push(widget));
 
       return widgets;
-    }
+    },
   };
 }
 
