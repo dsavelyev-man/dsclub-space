@@ -6,7 +6,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import Content from "../../components/content/Content";
 
 const classNames = {
-  main: "w-screen h-screen flex",
+  main: "h-screen flex",
 };
 
 const Editor = () => {

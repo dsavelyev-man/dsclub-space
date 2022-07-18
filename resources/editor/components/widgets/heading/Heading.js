@@ -10,20 +10,36 @@ export default class Heading extends BaseWidget {
         content: {
           value: {
             value: "Hello, world!",
-          }
-        }
+          },
+        },
       },
-      style: {
+      style: {},
+    };
 
-      }
-    }
+    this.list = [
+      [
+        "div",
+        {
+          props: {
+            hello: "aa",
+          },
+          children: [
+            [
+              "img",
+              {
+                props: {
+                  src: "/images/index/1.jpg",
+                },
+              },
+            ],
+            "{{content.content.value}}",
+            "{{content.content.value}}",
+            "{{content.content.value}}",
+          ],
+        },
+      ],
+    ];
 
-    this.html = `
-    ${constants.tagWrapper.start.left + constants.headingTags[0] + constants.tagWrapper.start.right}
-    ${this.getValue(["content", "content", "value"])}
-    ${constants.tagWrapper.end.left + constants.headingTags[0] + constants.tagWrapper.end.right}
-    `;
-
-    console.log(this.html);
+    this.html = this.builder(this.list);
   }
 }

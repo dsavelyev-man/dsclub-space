@@ -81,6 +81,7 @@
     "luxon": "^2.4.0",
     "mysql": "^2.18.1",
     "normalize.css": "^8.0.1",
+    "object-path": "^0.11.8",
     "proxy-addr": "^2.0.7",
     "react": "^18.1.0",
     "react-custom-scrollbars": "^4.2.1",

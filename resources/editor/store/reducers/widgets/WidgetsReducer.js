@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import WidgetsManager from "../../../components/widgets/WidgetsManager";
+import Widgets from "../../../components/widgets/Widgets";
 
 window.ds = {
-  widgets: new Map(),
-}
+  widgets: new Widgets(),
+};
 
 const initialState = {
   links: {},

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import Widgets from "./widgets/Widgets";
 
 const classNames = {
-  container: "h-screen ds-panel w-72 bg-slate-800",
+  container: "h-screen ds-panel fixed w-72 bg-slate-800",
 };
 
 const Panel = () => {
