@@ -1,5 +1,7 @@
 import React from "react";
 import { useDrag } from "react-dnd";
+import { useDispatch } from "react-redux";
+import { setDrag } from "../../../store/reducers/drag/dragReducer";
 
 const classNames = {
   container:
@@ -9,13 +11,20 @@ const classNames = {
 };
 
 const Widget = (props) => {
-  const [{ opacity }, dragRef] = useDrag(() => ({
+  const dispatch = useDispatch();
+
+  const [{ opacity, isDragging }, dragRef] = useDrag(() => ({
     type: "widget",
     item: props.widget,
     collect: (monitor) => ({
       opacity: monitor.isDragging() ? 0.5 : 1,
+      isDragging: monitor.isDragging(),
     }),
   }));
+
+  React.useEffect(() => {
+    dispatch(setDrag(isDragging));
+  }, [isDragging]);
 
   return (
     <div ref={dragRef} style={{ opacity }} className={classNames.container}>

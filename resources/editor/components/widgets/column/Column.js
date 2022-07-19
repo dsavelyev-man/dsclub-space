@@ -1,7 +1,7 @@
 import BaseWidget from "../basic/BaseWidget";
 import constants from "../basic/constants";
 
-export default class Heading extends BaseWidget {
+export default class Column extends BaseWidget {
   constructor() {
     super();
 

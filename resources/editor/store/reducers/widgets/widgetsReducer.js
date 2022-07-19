@@ -24,6 +24,7 @@ export const WidgetsSlice = createSlice({
 
       state.links[instance.guid] = {
         name: action.payload.name,
+        update: instance.guid,
       };
     },
   },

@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import PanelReducer from "./reducers/panel/panelReducer";
-import WidgetsReducer from "./reducers/widgets/WidgetsReducer";
+import panelReducer from "./reducers/panel/panelReducer";
+import widgetsReducer from "./reducers/widgets/widgetsReducer";
+import dragReducer from "./reducers/drag/dragReducer";
 
 const reducer = {
-  panel: PanelReducer,
-  widgets: WidgetsReducer,
+  panel: panelReducer,
+  widgets: widgetsReducer,
+  drag: dragReducer,
 };
 
 const store = configureStore({

@@ -1,10 +1,10 @@
 import React from "react";
 import { useDrop } from "react-dnd";
 import { useDispatch } from "react-redux";
-import { dropWidget } from "../../store/reducers/widgets/WidgetsReducer";
+import { dropWidget } from "../../store/reducers/widgets/widgetsReducer";
 
 const classNames = {
-  container: "w-full m-2 p-8 flex justify-center bg-slate-200 align-center",
+  container: "m-2 p-8 flex justify-center bg-slate-200 align-center",
 };
 
 const Drop = () => {

@@ -18,14 +18,26 @@ export default class BaseWidget {
   }
 
   prop(name, value) {
-    return `${name}="${value}"`;
+    if (name === "class") {
+      return `${name}="ds-element ${value}"`;
+    } else {
+      return `${name}="${value}"`;
+    }
   }
 
   tag(tag, end = false, props) {
     let propsString = "";
 
+    let hasClass = false;
+
     for (const prop in props) {
       propsString = propsString + this.prop(prop, props[prop]) + " ";
+
+      if (prop === "class") hasClass = true;
+    }
+
+    if (!hasClass) {
+      propsString = propsString + `class="${constants.basicClass}"`;
     }
 
     console.log(propsString);
