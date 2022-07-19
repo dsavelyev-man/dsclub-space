@@ -2,6 +2,9 @@ import BaseWidget from "../basic/BaseWidget";
 import constants from "../basic/constants";
 
 export default class Column extends BaseWidget {
+  isColumn = true;
+  children = [];
+
   constructor() {
     super();
 
@@ -15,15 +18,18 @@ export default class Column extends BaseWidget {
       },
       style: {},
     };
+  }
 
+  buildHtml() {
     this.list = [
       [
         "div",
         {
           props: {
+            class: "ds-column",
             id: constants.idPrefix + this.guid,
           },
-          children: ["{{content.content.value}}"],
+          children: this.children,
         },
       ],
     ];

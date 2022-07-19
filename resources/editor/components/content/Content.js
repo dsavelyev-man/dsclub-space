@@ -16,7 +16,7 @@ const Content = () => {
   React.useEffect(() => {
     ref.current.innerHTML = window.ds.widgets.toHtml();
 
-    const htmlCollection = document.getElementsByClassName("ds-element");
+    const htmlCollection = document.getElementsByClassName("ds-container");
     const collection = [];
 
     for (const elem of htmlCollection) {

@@ -2,6 +2,9 @@ import BaseWidget from "../basic/BaseWidget";
 import constants from "../basic/constants";
 
 export default class Container extends BaseWidget {
+  isContainer = true;
+  children = [];
+
   constructor() {
     super();
 
@@ -15,15 +18,18 @@ export default class Container extends BaseWidget {
       },
       style: {},
     };
+  }
 
+  buildHtml() {
     this.list = [
       [
         "div",
         {
           props: {
+            class: "ds-container",
             id: constants.idPrefix + this.guid,
           },
-          children: ["{{content.content.value}}"],
+          children: this.children,
         },
       ],
     ];

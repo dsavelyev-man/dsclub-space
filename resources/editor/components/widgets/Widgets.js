@@ -3,7 +3,9 @@ export default class Widgets extends Map {
     let html = "";
 
     for (const widget of this) {
-      html = html + widget[1].getHtml();
+      if (widget[1].isContainer) {
+        html = html + widget[1].getHtml();
+      }
     }
 
     return html;

@@ -40,8 +40,6 @@ export default class BaseWidget {
       propsString = propsString + `class="${constants.basicClass}"`;
     }
 
-    console.log(propsString);
-
     if (!end) {
       return (
         constants.tagWrapper.start.left +
@@ -76,6 +74,11 @@ export default class BaseWidget {
     let string = "";
 
     for (const elem of list) {
+      if (elem instanceof BaseWidget) {
+        string = string + elem.getHtml();
+        continue;
+      }
+
       if (isString(elem)) {
         string = string + this.replaceByController(elem);
 
