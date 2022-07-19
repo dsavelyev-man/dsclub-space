@@ -1,7 +1,7 @@
 import React from "react";
 import { useDrop } from "react-dnd";
 import { dropWidget } from "../../store/reducers/widgets/widgetsReducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const classNames = {
   top: "absolute h-3/6 w-full top-0 left-0",
@@ -11,6 +11,7 @@ const classNames = {
 const InvisibleDrop = ({ element }) => {
   const guid = element.id.replace("dsElement-", "");
   const dispatch = useDispatch();
+  const drag = useSelector((state) => state.drag);
 
   const [collectedPropsTop, dropTop] = useDrop(() => ({
     accept: "widget",
@@ -40,7 +41,6 @@ const InvisibleDrop = ({ element }) => {
   }, []);
 
   React.useEffect(() => {
-    console.log(collectedPropsTop);
     if (collectedPropsTop.over) {
       element.style.borderTop = "20px solid rgb(49 46 129)";
     } else {
@@ -53,8 +53,8 @@ const InvisibleDrop = ({ element }) => {
       element.style.borderBottom = "";
     }
   }, [collectedPropsTop, collectedPropsBottom]);
-  console.log(collectedPropsBottom.over);
-  return (
+
+  return drag.dragging ? (
     <>
       <div
         ref={dropTop}
@@ -81,6 +81,8 @@ const InvisibleDrop = ({ element }) => {
         }
       />
     </>
+  ) : (
+    ""
   );
 };
 

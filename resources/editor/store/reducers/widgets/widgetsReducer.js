@@ -8,6 +8,7 @@ window.ds = {
 
 const initialState = {
   links: {},
+  last: null,
 };
 
 // Будет хранить настройки виджетов
@@ -26,6 +27,8 @@ export const WidgetsSlice = createSlice({
         name: action.payload.name,
         update: instance.guid,
       };
+
+      state.last = instance.guid;
     },
   },
 });
