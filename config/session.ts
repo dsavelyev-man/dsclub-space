@@ -15,7 +15,7 @@ export default sessionConfig({
   | Enable/Disable sessions
   |--------------------------------------------------------------------------
   |
-  | Setting the following property to "false" will disable the session for the
+  | Group the following property to "false" will disable the session for the
   | entire application
   |
   */
@@ -53,7 +53,7 @@ export default sessionConfig({
   | Clear session when browser closes
   |--------------------------------------------------------------------------
   |
-  | Whether or not you want to destroy the session when browser closes. Setting
+  | Whether or not you want to destroy the session when browser closes. Group
   | this value to `true` will ignore the `age`.
   |
   */

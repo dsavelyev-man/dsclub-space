@@ -16,7 +16,7 @@ const corsConfig: CorsConfig = {
   | A boolean to enable or disable CORS integration from your AdonisJs
   | application.
   |
-  | Setting the value to `true` will enable the CORS for all HTTP request. However,
+  | Group the value to `true` will enable the CORS for all HTTP request. However,
   | you can define a function to enable/disable it on per request basis as well.
   |
   */

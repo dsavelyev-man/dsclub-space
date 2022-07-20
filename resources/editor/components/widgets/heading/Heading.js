@@ -1,18 +1,20 @@
 import BaseWidget from "../basic/BaseWidget";
 import constants from "../basic/constants";
+import Group from "../basic/Group";
+import Tab from "../basic/Tab";
 
 export default class Heading extends BaseWidget {
   constructor() {
     super();
 
     this.settings = {
-      content: {
-        content: {
+      content: new Tab({
+        content: new Group({
           value: {
             value: "Hello, world!",
           },
-        },
-      },
+        }),
+      }),
       style: {},
     };
 

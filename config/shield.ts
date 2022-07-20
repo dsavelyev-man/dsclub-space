@@ -51,7 +51,7 @@ export const csp: ShieldConfig["csp"] = {
   | Report only
   |--------------------------------------------------------------------------
   |
-  | Setting `reportOnly=true` will not block the scripts from running and
+  | Group `reportOnly=true` will not block the scripts from running and
   | instead report them to a URL.
   |
   */

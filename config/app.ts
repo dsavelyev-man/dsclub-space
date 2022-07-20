@@ -64,7 +64,7 @@ export const http: ServerConfig = {
   | Request Ids
   |--------------------------------------------------------------------------
   |
-  | Setting this value to `true` will generate a unique request id for each
+  | Group this value to `true` will generate a unique request id for each
   | HTTP request and set it as `x-request-id` header.
   |
   */

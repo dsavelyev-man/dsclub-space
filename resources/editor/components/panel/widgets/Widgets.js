@@ -11,9 +11,11 @@ const Widgets = () => {
   return (
     <Scrollbars style={{ height: "calc(100vh - 48px)" }}>
       <div className={classNames.container}>
-        {WidgetsManager.toArray().map((widget) => (
-          <Widget widget={widget} key={widget.name} />
-        ))}
+        {WidgetsManager.toArray()
+          .filter((widget) => widget.name !== "container" && widget.name !== "column")
+          .map((widget) => (
+            <Widget widget={widget} key={widget.name} />
+          ))}
       </div>
     </Scrollbars>
   );

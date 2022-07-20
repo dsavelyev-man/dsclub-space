@@ -11,13 +11,12 @@ const classNames = {
 
 const Drop = () => {
   const dispatch = useDispatch();
-  const lastWidget = useSelector((state) => state.widgets.last);
 
   const [collectedProps, drop] = useDrop(() => ({
     accept: "widget",
     drop: (item) => {
       dispatch(dropWidget(item.name));
-      dispatch(toSettings(lastWidget));
+      dispatch(toSettings(window.ds.lastCreated));
       dispatch(setDrag(false));
     },
   }));
