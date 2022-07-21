@@ -31,7 +31,7 @@ const Content = () => {
       {elements.map((elem) => {
         return ReactDOM.createPortal(<InvisibleDrop element={elem} />, elem);
       })}
-      <div style={{ width: "calc(100vw - 308px)" }} className={classNames.container}>
+      <div className={classNames.container}>
         <div ref={ref} />
         <Drop />
       </div>

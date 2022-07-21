@@ -20,4 +20,6 @@ body {
 
 .ds-content {
   margin-left: 288px;
+  width: calc(100vw - 288px);
+  overflow: hidden;
 }

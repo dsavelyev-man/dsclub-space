@@ -6,6 +6,7 @@ import Controller from "../basic/Controller";
 import TextController from "../../panel/settings/controllers/TextController";
 import TextareaController from "../../panel/settings/controllers/TextareaController";
 import AlignmentController from "../../panel/settings/controllers/AlignmentController";
+import SelectController from "../../panel/settings/controllers/SelectController";
 
 export default class Heading extends BaseWidget {
   constructor() {
@@ -20,14 +21,28 @@ export default class Heading extends BaseWidget {
           }),
         }),
         settings: new Group("Settings", {
-          value: new Controller(AlignmentController, {
+          alignment: new Controller(AlignmentController, {
             default: 0,
-            label: "Text",
+            label: "Alignment",
             extra: {
               left: 0,
               center: 1,
               right: 2,
               stretch: 3,
+            },
+          }),
+          tag: new Controller(SelectController, {
+            default: "h1",
+            label: "HTML tag",
+            extra: {
+              options: [
+                ["h1", "h1"],
+                ["h2", "h2"],
+                ["h3", "h3"],
+                ["h4", "h4"],
+                ["h5", "h5"],
+                ["h6", "h6"],
+              ],
             },
           }),
         }),
@@ -38,7 +53,7 @@ export default class Heading extends BaseWidget {
 
     this.list = [
       [
-        "div",
+        "{{content.settings.tag}}",
         {
           props: {
             id: constants.idPrefix + this.guid,
