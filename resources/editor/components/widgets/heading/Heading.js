@@ -4,6 +4,8 @@ import Group from "../basic/Group";
 import Tab from "../basic/Tab";
 import Controller from "../basic/Controller";
 import TextController from "../../panel/settings/controllers/TextController";
+import TextareaController from "../../panel/settings/controllers/TextareaController";
+import AlignmentController from "../../panel/settings/controllers/AlignmentController";
 
 export default class Heading extends BaseWidget {
   constructor() {
@@ -11,26 +13,27 @@ export default class Heading extends BaseWidget {
 
     this.settings = {
       content: new Tab({
-        content: new Group("Content", {
-          value: new Controller(TextController, {
+        text: new Group("Text", {
+          value: new Controller(TextareaController, {
             default: "Hello, world!",
             label: "Text",
           }),
         }),
-        g: new Group("Super content", {
-          value: new Controller(TextController, {
-            default: "Hello, world!",
+        settings: new Group("Settings", {
+          value: new Controller(AlignmentController, {
+            default: 0,
             label: "Text",
-          }),
-        }),
-        sg: new Group("sssss content", {
-          value: new Controller(TextController, {
-            default: "Hello, world!",
-            label: "Text",
+            extra: {
+              left: 0,
+              center: 1,
+              right: 2,
+              stretch: 3,
+            },
           }),
         }),
       }),
-      style: {},
+      style: new Tab({}),
+      advanced: new Tab({}),
     };
 
     this.list = [
@@ -40,7 +43,7 @@ export default class Heading extends BaseWidget {
           props: {
             id: constants.idPrefix + this.guid,
           },
-          children: ["{{content.content.value}}"],
+          children: ["{{content.text.value}}"],
         },
       ],
     ];

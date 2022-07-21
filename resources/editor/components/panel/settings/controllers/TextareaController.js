@@ -4,11 +4,11 @@ import { update } from "../../../../store/reducers/widgets/widgetsReducer";
 
 const classNames = {
   input:
-    "hidden sm:flex items-center mt-2 mx-2 w-full ds-controller__text text-left space-x-3 px-4 h-8 ring-1 ring-slate-900/10 " +
+    "hidden sm:flex items-center h-24 mt-2 mx-2 w-full ds-controller__text text-left py-2 space-x-3 px-4 ring-1 ring-slate-900/10 " +
     "hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded bg-slate-800 ring-0 text-slate-300 highlight-white/5",
 };
 
-const TextController = (props) => {
+const TextareaController = (props) => {
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -18,7 +18,7 @@ const TextController = (props) => {
   };
 
   return (
-    <input
+    <textarea
       className={classNames.input}
       value={props.controller.value}
       placeholder={props.controller.default}
@@ -27,4 +27,4 @@ const TextController = (props) => {
   );
 };
 
-export default TextController;
+export default TextareaController;

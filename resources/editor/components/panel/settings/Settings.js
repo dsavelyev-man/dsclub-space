@@ -14,7 +14,7 @@ const Settings = (props) => {
 
   return (
     <div>
-      <Tabs />
+      <Tabs tab={tab} />
       <div>
         {(widget.settings[tab].toArray() || []).map((group, index) => {
           return (
