@@ -3,6 +3,7 @@ import constants from "./constants";
 import clone from "lodash/clone";
 import { get } from "object-path";
 import isString from "lodash/isString";
+import isArray from "lodash/isArray";
 
 export default class BaseWidget {
   constructor() {
@@ -13,6 +14,12 @@ export default class BaseWidget {
     return get(this.settings, path)?.getValue();
   }
 
+  getStyle() {
+    this.style = this.generateStyle(this.styleList);
+
+    return this.style;
+  }
+
   getHtml() {
     this.html = this.builder(this.list);
 
@@ -21,7 +28,7 @@ export default class BaseWidget {
 
   prop(name, value) {
     if (name === "class") {
-      return `${name}="ds-element ${value}"`;
+      return `${name}="${constants.basicClass} ${constants.basicClass}-${this.guid} ${value}"`;
     } else {
       return `${name}="${value}"`;
     }
@@ -39,7 +46,8 @@ export default class BaseWidget {
     }
 
     if (!hasClass) {
-      propsString = propsString + `class="${constants.basicClass}"`;
+      propsString =
+        propsString + `class="${constants.basicClass} ${constants.basicClass}-${this.guid}"`;
     }
 
     if (!end) {
@@ -67,6 +75,37 @@ export default class BaseWidget {
       }
 
       return newString;
+    }
+
+    return string;
+  }
+
+  generateStyle(style = []) {
+    let string = "";
+
+    for (const elem of style) {
+      if (isString(elem)) {
+        switch (elem[0]) {
+          case "&":
+            string = string + `.${constants.basicClass}-${this.guid}` + elem.substring(1) + " {";
+            break;
+          case ".":
+            string = string + elem.substring(1) + " {";
+            break;
+          case "}":
+            string = string + "}";
+            break;
+          default:
+            string = string + `.${constants.basicClass}-${this.guid}` + " ." + elem + " {";
+        }
+      } else if (isArray(elem)) {
+        switch (elem[0]) {
+          default:
+            if (this.getValue(elem[2])) {
+              string = string + `${elem[1]}: ${this.getValue(elem[2])};`;
+            }
+        }
+      }
     }
 
     return string;
@@ -104,4 +143,7 @@ export default class BaseWidget {
 
     return string;
   }
+
+  static defaultStyle = `
+  `;
 }

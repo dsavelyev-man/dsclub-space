@@ -8,6 +8,22 @@ export default class Widgets extends Map {
       }
     }
 
+    html = html + this.toStyle();
+
     return html;
+  }
+
+  toStyle() {
+    let style = "";
+
+    for (const widget of this) {
+      style = style + widget[1].getStyle();
+    }
+
+    for (const widgetKey in window.ds.added) {
+      style = style += window.ds.added[widgetKey].defaultStyle;
+    }
+
+    return `<style>${style}</style>`;
   }
 }

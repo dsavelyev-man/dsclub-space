@@ -1,11 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import WidgetsManager from "../../../components/widgets/WidgetsManager";
-import Widgets from "../../../components/widgets/Widgets";
 import { v4 as uuidv4 } from "uuid";
-
-window.ds = {
-  widgets: new Widgets(),
-};
 
 const initialState = {
   links: {},
@@ -60,6 +55,8 @@ export const WidgetsSlice = createSlice({
       };
 
       window.ds.lastCreated = instance.guid;
+
+      window.ds.added[action.payload] = WidgetsManager.widgets.get(action.payload).component;
     },
   },
 });

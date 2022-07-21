@@ -24,10 +24,10 @@ const AlignmentController = (props) => {
   const extra = props.controller.extra || {};
   const [value, setValue] = React.useState(props.controller.getValue());
 
-  const handleChange = (value) => {
-    props.controller.setValue(value);
+  const handleChange = (newValue) => {
+    props.controller.setValue(newValue === value ? null : newValue);
 
-    setValue(value);
+    setValue(newValue === value ? null : newValue);
     dispatch(update(props.guid));
   };
 

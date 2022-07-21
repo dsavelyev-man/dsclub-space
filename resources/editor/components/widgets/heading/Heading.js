@@ -12,6 +12,7 @@ export default class Heading extends BaseWidget {
   constructor() {
     super();
 
+    //settings
     this.settings = {
       content: new Tab({
         text: new Group("Text", {
@@ -22,13 +23,12 @@ export default class Heading extends BaseWidget {
         }),
         settings: new Group("Settings", {
           alignment: new Controller(AlignmentController, {
-            default: 0,
             label: "Alignment",
             extra: {
-              left: 0,
-              center: 1,
-              right: 2,
-              stretch: 3,
+              left: "flex-start",
+              center: "center",
+              right: "flex-end",
+              stretch: "stretch",
             },
           }),
           tag: new Controller(SelectController, {
@@ -50,19 +50,34 @@ export default class Heading extends BaseWidget {
       style: new Tab({}),
       advanced: new Tab({}),
     };
+    //settings
 
+    //list
     this.list = [
       [
         "{{content.settings.tag}}",
         {
           props: {
             id: constants.idPrefix + this.guid,
+            class: "ds-heading",
           },
           children: ["{{content.text.value}}"],
         },
       ],
     ];
+    //list
 
+    //style list
+    this.styleList = ["&", ["", "justify-content", "content.settings.alignment"], "}"];
+    //style list
+
+    this.style = this.generateStyle(this.styleList);
     this.html = this.builder(this.list);
   }
+
+  static defaultStyle = `
+    .ds-heading {
+      display: flex
+    }
+  `;
 }
