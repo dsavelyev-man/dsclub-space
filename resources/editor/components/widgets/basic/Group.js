@@ -1,7 +1,9 @@
 import BaseSetting from "./BaseSetting";
 
 export default class Group extends BaseSetting {
-  constructor(props) {
+  constructor(label, props) {
     super(props);
+
+    this._label = label;
   }
 }

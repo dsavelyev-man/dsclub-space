@@ -6,7 +6,7 @@ import { toPanel } from "../../store/reducers/panel/panelReducer";
 
 const classNames = {
   container:
-    "flex justify-between ds-panel__header py-3 shadow bg-slate-900 p-2 align-center text-slate-100",
+    "flex justify-between ds-panel__header py-3 shadow-lg shadow-slate-900/10 bg-slate-900 p-2 align-center text-slate-100",
   widgets: "cursor-pointer",
   header: "cursor-pointer ml-4",
 };

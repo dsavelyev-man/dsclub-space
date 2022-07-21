@@ -10,10 +10,12 @@ export default class BaseWidget {
   }
 
   getValue(path) {
-    return get(this.settings, path)?.value || "Error";
+    return get(this.settings, path)?.getValue();
   }
 
   getHtml() {
+    this.html = this.builder(this.list);
+
     return this.html;
   }
 

@@ -10,7 +10,6 @@ import Routing from "./Routing";
 const App = () => {
   return (
     <>
-      Hello alexey
       <Routing />
     </>
   );

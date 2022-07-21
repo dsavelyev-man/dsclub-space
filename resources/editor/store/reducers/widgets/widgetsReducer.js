@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import WidgetsManager from "../../../components/widgets/WidgetsManager";
 import Widgets from "../../../components/widgets/Widgets";
+import { v4 as uuidv4 } from "uuid";
 
 window.ds = {
   widgets: new Widgets(),
@@ -15,6 +16,9 @@ export const WidgetsSlice = createSlice({
   name: "widgets",
   initialState,
   reducers: {
+    update: (state, action) => {
+      state.links[action.payload].update = uuidv4();
+    },
     dropWidget: (state, action) => {
       let widgetClass = WidgetsManager.widgets.get(action.payload).component;
       let containerClass = WidgetsManager.widgets.get("container").component;
@@ -60,6 +64,6 @@ export const WidgetsSlice = createSlice({
   },
 });
 
-export const { dropWidget } = WidgetsSlice.actions;
+export const { dropWidget, update } = WidgetsSlice.actions;
 
 export default WidgetsSlice.reducer;
