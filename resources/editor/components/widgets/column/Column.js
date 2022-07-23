@@ -1,5 +1,7 @@
 import BaseWidget from "../basic/BaseWidget";
 import constants from "../basic/constants";
+import settings from "./settings";
+import dom from "./dom";
 
 export default class Column extends BaseWidget {
   isColumn = true;
@@ -8,32 +10,12 @@ export default class Column extends BaseWidget {
   constructor() {
     super();
 
-    this.settings = {
-      content: {
-        content: {
-          value: {
-            value: "Hello, world!",
-          },
-        },
-      },
-      style: {},
-    };
+    this.settings = settings();
   }
 
   buildHtml() {
-    this.list = [
-      [
-        "div",
-        {
-          props: {
-            class: "ds-column",
-            id: constants.idPrefix + this.guid,
-          },
-          children: this.children,
-        },
-      ],
-    ];
+    this.list = dom;
 
-    this.html = this.builder(this.list);
+    this.html = this.builder(this.list(this));
   }
 }

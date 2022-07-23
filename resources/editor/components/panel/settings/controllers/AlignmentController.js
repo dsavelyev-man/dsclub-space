@@ -9,11 +9,12 @@ import join from "lodash/join";
 
 const classNames = {
   container: "flex pr-2",
-  tab: (active) =>
+  tab: (active, value) =>
     join(
       [
-        "bg-slate-800 p-1 first:rounded-l last:rounded-r cursor-pointer",
+        "bg-slate-800 ds-controller__alignment first:rounded-l last:rounded-r cursor-pointer",
         active ? "border border-slate-500" : undefined,
+        !value ? "ds-controller__alignment_active" : undefined,
       ],
       " "
     ),
@@ -36,7 +37,7 @@ const AlignmentController = (props) => {
       {extra.left !== undefined && (
         <div
           onClick={() => handleChange(extra.left)}
-          className={classNames.tab(value === extra.left)}
+          className={classNames.tab(value === extra.left, props.controller.getValue())}
         >
           <AlignHorizontalLeftIcon />
         </div>
@@ -44,7 +45,7 @@ const AlignmentController = (props) => {
       {extra.center !== undefined && (
         <div
           onClick={() => handleChange(extra.center)}
-          className={classNames.tab(value === extra.center)}
+          className={classNames.tab(value === extra.center, props.controller.getValue())}
         >
           <AlignHorizontalCenterIcon />
         </div>
@@ -52,7 +53,7 @@ const AlignmentController = (props) => {
       {extra.right !== undefined && (
         <div
           onClick={() => handleChange(extra.right)}
-          className={classNames.tab(value === extra.right)}
+          className={classNames.tab(value === extra.right, props.controller.getValue())}
         >
           <AlignHorizontalRightIcon />
         </div>
@@ -60,7 +61,7 @@ const AlignmentController = (props) => {
       {extra.stretch !== undefined && (
         <div
           onClick={() => handleChange(extra.stretch)}
-          className={classNames.tab(value === extra.stretch)}
+          className={classNames.tab(value === extra.stretch, props.controller.getValue())}
         >
           <SubjectIcon />
         </div>

@@ -19,6 +19,17 @@
 */
 
 import Route from "@ioc:Adonis/Core/Route";
+import Application from "@ioc:Adonis/Core/Application";
+
+Route.get("/editor/template/:guid", async ({ request, response }) => {
+  const params = request.params();
+
+  const path = Application.resourcesPath("views/templates/" + params.guid + ".edge");
+
+  response.header("Content-Disposition", 'attachment; filename="index.html"');
+
+  response.download(path);
+});
 
 Route.get("/editor/*", async ({ view }) => {
   return view.render("editor");

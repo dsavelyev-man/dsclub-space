@@ -4,6 +4,7 @@ import "../../scss/panel.scss";
 import { useSelector } from "react-redux";
 import Widgets from "./widgets/Widgets";
 import Settings from "./settings/Settings";
+import Menu from "./Menu";
 
 const classNames = {
   container: "h-screen ds-panel fixed w-72 bg-slate-800",
@@ -26,6 +27,7 @@ const Panel = () => {
     <div className={classNames.container}>
       <Header />
       {content}
+      <Menu />
     </div>
   );
 };

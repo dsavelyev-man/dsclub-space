@@ -15,13 +15,13 @@ export default class BaseWidget {
   }
 
   getStyle() {
-    this.style = this.generateStyle(this.styleList);
+    this.style = this.generateStyle(this.styleList ? this.styleList(this) : []);
 
     return this.style;
   }
 
   getHtml() {
-    this.html = this.builder(this.list);
+    this.html = this.builder(this.list(this));
 
     return this.html;
   }

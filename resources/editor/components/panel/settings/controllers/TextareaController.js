@@ -21,7 +21,7 @@ const TextareaController = (props) => {
     <textarea
       className={classNames.input}
       defaultValue={props.controller.value}
-      placeholder={props.controller.default}
+      placeholder={props.controller.default || props.controller.extra?.placeholder}
       onChange={handleChange}
     />
   );

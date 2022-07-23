@@ -26,8 +26,6 @@ const Content = () => {
     setElements(collection);
   }, [widgets]);
 
-  console.log(window.ds.widgets.toHtml());
-
   return (
     <>
       {elements.map((elem) => {
