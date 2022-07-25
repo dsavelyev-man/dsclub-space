@@ -22,6 +22,7 @@ const dom = (widget) => {
         {
           props: {
             href: link,
+            class: "ds-heading__link",
           },
           children: [heading],
         },

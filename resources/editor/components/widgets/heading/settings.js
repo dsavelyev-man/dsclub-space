@@ -6,6 +6,9 @@ import AlignmentController from "../../panel/settings/controllers/AlignmentContr
 import SelectController from "../../panel/settings/controllers/SelectController";
 import TextController from "../../panel/settings/controllers/TextController";
 import DimensionsController from "../../panel/settings/controllers/DimensionsController";
+import NumberController from "../../panel/settings/controllers/NumberController";
+import position from "../presets/position";
+import ColorController from "../../panel/settings/controllers/ColorController";
 
 const settings = () => {
   return {
@@ -51,12 +54,10 @@ const settings = () => {
       }),
     }),
     style: new Tab({
-      position: new Group("Position", {
-        margin: new Controller(DimensionsController, {
-          label: "Margin",
-        }),
-        padding: new Controller(DimensionsController, {
-          label: "Padding",
+      position,
+      font: new Group("Font", {
+        color: new Controller(ColorController, {
+          label: "Color",
         }),
       }),
     }),

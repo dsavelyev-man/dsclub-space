@@ -42,7 +42,7 @@ const DimensionsController = (props) => {
 
   const handleChange = (e, index) => {
     const value = props.controller.value;
-    const targetValue = parseInt(e.target.value);
+    const targetValue = parseFloat(e.target.value);
 
     if (!props.controller.value.bind) {
       value[index] = targetValue;
@@ -109,6 +109,7 @@ const DimensionsController = (props) => {
             ref={topInput}
             onChange={(e) => handleChange(e, "top")}
             type="number"
+            step="any"
             defaultValue={value.top}
             className={classNames.input + " rounded-l"}
           />
@@ -119,6 +120,7 @@ const DimensionsController = (props) => {
             ref={rightInput}
             onChange={(e) => handleChange(e, "right")}
             type="number"
+            step="any"
             defaultValue={value.right}
             className={classNames.input}
           />
@@ -129,6 +131,7 @@ const DimensionsController = (props) => {
             ref={bottomInput}
             onChange={(e) => handleChange(e, "bottom")}
             type="number"
+            step="any"
             defaultValue={value.bottom}
             className={classNames.input}
           />
@@ -139,6 +142,7 @@ const DimensionsController = (props) => {
             ref={leftInput}
             onChange={(e) => handleChange(e, "left")}
             type="number"
+            step="any"
             defaultValue={value.left}
             className={classNames.input}
           />

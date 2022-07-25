@@ -25,3 +25,10 @@
     }
   }
 }
+
+.ds-controller__number {
+  appearance: none;
+  &::-webkit-inner-spin-button {
+    appearance: none;
+  }
+}
