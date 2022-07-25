@@ -8,7 +8,7 @@ import SubjectIcon from "@mui/icons-material/Subject";
 import join from "lodash/join";
 
 const classNames = {
-  container: "flex pr-2",
+  wrapper: "flex pr-2",
   tab: (active, value) =>
     join(
       [
@@ -18,6 +18,9 @@ const classNames = {
       ],
       " "
     ),
+  container: "py-2 flex justify-between items-center",
+  label: "mx-2",
+  content: "",
 };
 
 const AlignmentController = (props) => {
@@ -34,38 +37,43 @@ const AlignmentController = (props) => {
 
   return (
     <div className={classNames.container}>
-      {extra.left !== undefined && (
-        <div
-          onClick={() => handleChange(extra.left)}
-          className={classNames.tab(value === extra.left, props.controller.getValue())}
-        >
-          <AlignHorizontalLeftIcon />
-        </div>
+      {props.controller.label && (
+        <label className={classNames.label}>{props.controller.label}</label>
       )}
-      {extra.center !== undefined && (
-        <div
-          onClick={() => handleChange(extra.center)}
-          className={classNames.tab(value === extra.center, props.controller.getValue())}
-        >
-          <AlignHorizontalCenterIcon />
-        </div>
-      )}
-      {extra.right !== undefined && (
-        <div
-          onClick={() => handleChange(extra.right)}
-          className={classNames.tab(value === extra.right, props.controller.getValue())}
-        >
-          <AlignHorizontalRightIcon />
-        </div>
-      )}
-      {extra.stretch !== undefined && (
-        <div
-          onClick={() => handleChange(extra.stretch)}
-          className={classNames.tab(value === extra.stretch, props.controller.getValue())}
-        >
-          <SubjectIcon />
-        </div>
-      )}
+      <div className={classNames.wrapper}>
+        {extra.left !== undefined && (
+          <div
+            onClick={() => handleChange(extra.left)}
+            className={classNames.tab(value === extra.left, props.controller.getValue())}
+          >
+            <AlignHorizontalLeftIcon />
+          </div>
+        )}
+        {extra.center !== undefined && (
+          <div
+            onClick={() => handleChange(extra.center)}
+            className={classNames.tab(value === extra.center, props.controller.getValue())}
+          >
+            <AlignHorizontalCenterIcon />
+          </div>
+        )}
+        {extra.right !== undefined && (
+          <div
+            onClick={() => handleChange(extra.right)}
+            className={classNames.tab(value === extra.right, props.controller.getValue())}
+          >
+            <AlignHorizontalRightIcon />
+          </div>
+        )}
+        {extra.stretch !== undefined && (
+          <div
+            onClick={() => handleChange(extra.stretch)}
+            className={classNames.tab(value === extra.stretch, props.controller.getValue())}
+          >
+            <SubjectIcon />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import TextareaController from "../../panel/settings/controllers/TextareaControl
 import AlignmentController from "../../panel/settings/controllers/AlignmentController";
 import SelectController from "../../panel/settings/controllers/SelectController";
 import TextController from "../../panel/settings/controllers/TextController";
+import DimensionsController from "../../panel/settings/controllers/DimensionsController";
 
 const settings = () => {
   return {
@@ -49,7 +50,13 @@ const settings = () => {
         }),
       }),
     }),
-    style: new Tab({}),
+    style: new Tab({
+      position: new Group("Position", {
+        margin: new Controller(DimensionsController, {
+          label: "Margin",
+        }),
+      }),
+    }),
     advanced: new Tab({}),
   };
 };

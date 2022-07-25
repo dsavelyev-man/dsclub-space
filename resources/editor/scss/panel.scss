@@ -16,3 +16,12 @@
     padding-top: 5px;
   }
 }
+
+.ds-controller__dimensions {
+  & input {
+    appearance: none;
+    &::-webkit-inner-spin-button {
+      appearance: none;
+    }
+  }
+}

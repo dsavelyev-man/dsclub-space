@@ -25,28 +25,22 @@ const constants = {
 };
 
 const Tabs = (props) => {
-  const dispatch = useDispatch();
-
-  const changeTab = (tab) => {
-    dispatch(setTab(tab));
-  };
-
   return (
     <div className={classNames.container}>
       <div
-        onClick={() => changeTab(constants.content)}
+        onClick={() => props.changeTab(constants.content)}
         className={classNames.tab(props.tab === constants.content)}
       >
         <CreateIcon />
       </div>
       <div
-        onClick={() => changeTab(constants.style)}
+        onClick={() => props.changeTab(constants.style)}
         className={classNames.tab(props.tab === constants.style)}
       >
         <TuneIcon />
       </div>
       <div
-        onClick={() => changeTab(constants.advanced)}
+        onClick={() => props.changeTab(constants.advanced)}
         className={classNames.tab(props.tab === constants.advanced)}
       >
         <SettingsIcon />
