@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { update } from "../../../../store/reducers/widgets/widgetsReducer";
 import LinkIcon from "@mui/icons-material/Link";
 import join from "lodash/join";
+import Unit from "./Unit";
 
 const classNames = {
   input:
@@ -10,7 +11,7 @@ const classNames = {
     "hover:ring-slate-300 focus:outline-none focus:ring-2 relative focus:z-10 border-r border-slate-700 focus:ring-sky-500 " +
     "shadow-sm bg-slate-800 ring-0 text-slate-300 highlight-white/5",
   container: "py-2 ds-controller__dimensions",
-  label: "mx-2",
+  label: "mx-2 flex justify-between",
   content: "",
   wrapper: "flex mt-2 mx-2 items-start",
   bind: (bind) =>
@@ -41,19 +42,20 @@ const DimensionsController = (props) => {
 
   const handleChange = (e, index) => {
     const value = props.controller.value;
+    const targetValue = parseInt(e.target.value);
 
     if (!props.controller.value.bind) {
-      value[index] = e.target.value;
+      value[index] = targetValue;
     } else {
-      value.top = e.target.value;
-      value.right = e.target.value;
-      value.bottom = e.target.value;
-      value.left = e.target.value;
+      value.top = targetValue;
+      value.right = targetValue;
+      value.bottom = targetValue;
+      value.left = targetValue;
 
-      topInput.current.value = e.target.value;
-      rightInput.current.value = e.target.value;
-      bottomInput.current.value = e.target.value;
-      leftInput.current.value = e.target.value;
+      topInput.current.value = targetValue;
+      rightInput.current.value = targetValue;
+      bottomInput.current.value = targetValue;
+      leftInput.current.value = targetValue;
     }
 
     props.controller.setValue(value);
@@ -79,10 +81,27 @@ const DimensionsController = (props) => {
     dispatch(update(props.guid));
   };
 
+  const changeUnit = (unit) => {
+    const value = props.controller.value;
+
+    value.unit = unit;
+
+    props.controller.setValue(value);
+
+    dispatch(update(props.guid));
+  };
+
   return (
     <div className={classNames.container}>
       {props.controller.label && (
-        <label className={classNames.label}>{props.controller.label}</label>
+        <label className={classNames.label}>
+          {props.controller.label}
+          <Unit
+            value={value.unit || "px"}
+            change={changeUnit}
+            units={props.controller.extra?.units || ["px", "%", "rem", "em"]}
+          />
+        </label>
       )}
       <div className={classNames.wrapper}>
         <div className={classNames.inputContainer}>

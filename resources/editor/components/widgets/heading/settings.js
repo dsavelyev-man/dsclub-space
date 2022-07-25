@@ -55,6 +55,9 @@ const settings = () => {
         margin: new Controller(DimensionsController, {
           label: "Margin",
         }),
+        padding: new Controller(DimensionsController, {
+          label: "Padding",
+        }),
       }),
     }),
     advanced: new Tab({}),
