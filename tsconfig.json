@@ -6,6 +6,9 @@
     "outDir": "build",
     "rootDir": "./",
     "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react",
+    "module": "commonjs",
     "paths": {
       "App/*": ["./app/*"],
       "Config/*": ["./config/*"],

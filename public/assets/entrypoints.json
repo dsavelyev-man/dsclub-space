@@ -2,26 +2,34 @@
   "entrypoints": {
     "app": {
       "css": [
-        "http://localhost:8080/assets/app.css"
+        "/assets/app.10efd896.css"
       ],
       "js": [
-        "http://localhost:8080/assets/app.js"
+        "/assets/app.9115d063.js"
       ]
     },
     "pizza": {
       "css": [
-        "http://localhost:8080/assets/pizza.css"
+        "/assets/pizza.5d00b8af.css"
       ],
       "js": [
-        "http://localhost:8080/assets/pizza.js"
+        "/assets/pizza.0d81d9a4.js"
       ]
     },
     "editor": {
       "css": [
-        "http://localhost:8080/assets/editor.css"
+        "/assets/editor.98720fd2.css"
       ],
       "js": [
-        "http://localhost:8080/assets/editor.js"
+        "/assets/editor.2c1e47a6.js"
+      ]
+    },
+    "chat": {
+      "css": [
+        "/assets/chat.2e60405a.css"
+      ],
+      "js": [
+        "/assets/chat.5098364a.js"
       ]
     }
   }

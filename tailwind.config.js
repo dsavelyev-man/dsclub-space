@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./resources/editor/**/*.{html,js}"],
+  content: ["./resources/editor/**/*.{html,js}", "./resources/chat/**/*.{html,js}"],
   theme: {
     extend: {},
     minWidth: {

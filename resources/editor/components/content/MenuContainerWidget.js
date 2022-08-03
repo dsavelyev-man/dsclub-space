@@ -4,12 +4,12 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ClearIcon from "@mui/icons-material/Clear";
 
 const classNames = {
-  container: "absolute w-full top-0 left-0 flex justify-center",
+  container: "absolute w-full h-0 top-0 left-0 flex justify-center",
   button: "bg-slate-800 text-slate-100 p-1 first:rounded-l last:rounded-r",
   content: "",
 };
 
-const MenuWidget = ({ element }) => {
+const MenuContainerWidget = ({ element }) => {
   const [show, setShow] = React.useState(false);
   const guid = element.id.replace("dsElement-", "");
 
@@ -49,9 +49,6 @@ const MenuWidget = ({ element }) => {
             <BorderAllIcon />
           </button>
           <button className={classNames.button} title="Edit container">
-            <ContentCopyIcon />
-          </button>
-          <button className={classNames.button} title="Edit container">
             <ClearIcon />
           </button>
         </div>
@@ -60,4 +57,4 @@ const MenuWidget = ({ element }) => {
   );
 };
 
-export default MenuWidget;
+export default MenuContainerWidget;

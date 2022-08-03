@@ -40,13 +40,22 @@ Route.get("/editor/", async ({ view }) => {
 });
 
 Route.get("/pizza/*", async ({ view }) => {
-  return view.render("pizza");
+  return view.render("pizza", );
 });
 
 Route.get("/pizza/", async ({ view }) => {
   return view.render("pizza");
 });
 
+Route.get("/chat/*", async ({ view }) => {
+  return view.render("chat");
+});
+
+Route.get("/chat/", async ({ view }) => {
+  return view.render("chat");
+});
+
 Route.get("/*", async ({ view }) => {
   return view.render("index");
 });
+

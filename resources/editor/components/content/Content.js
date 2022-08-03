@@ -3,7 +3,7 @@ import Drop from "./Drop";
 import { useSelector } from "react-redux";
 import ReactDOM from "react-dom";
 import InvisibleDrop from "./InvisibleDrop";
-import MenuWidget from "./MenuWidget";
+import MenuContainerWidget from "./MenuContainerWidget";
 
 const classNames = {
   container: "ds-content",
@@ -33,7 +33,7 @@ const Content = () => {
         return ReactDOM.createPortal(
           <>
             <InvisibleDrop element={elem} />
-            <MenuWidget element={elem} />
+            <MenuContainerWidget element={elem} />
           </>,
           elem
         );
