@@ -1,8 +1,0 @@
-{
-  "assets/app.css": "http://localhost:8080/assets/app.css",
-  "assets/app.js": "http://localhost:8080/assets/app.js",
-  "assets/pizza.css": "http://localhost:8080/assets/pizza.css",
-  "assets/pizza.js": "http://localhost:8080/assets/pizza.js",
-  "assets/editor.css": "http://localhost:8080/assets/editor.css",
-  "assets/editor.js": "http://localhost:8080/assets/editor.js"
-}
