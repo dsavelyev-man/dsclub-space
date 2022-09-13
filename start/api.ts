@@ -4,7 +4,10 @@ import Application from "@ioc:Adonis/Core/Application";
 import { v4 as uuidv4 } from "uuid";
 
 Route.group(() => {
-  Route.resource("users", "UsersController");
+  Route.get("/auth", "UsersController.auth")
+  Route.post("/registration", "UsersController.registration")
+  Route.post("/login", "UsersController.login")
+
   Route.resource("cities", "CitiesController");
   Route.resource("products", "ProductsController");
 
