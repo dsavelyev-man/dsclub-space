@@ -46,5 +46,4 @@ jobs:
             yarn
             node ace migration:run
             cd ..
-            pm2 stop all
-            pm2 start /var/www/dsclub.space/server/build/server.js
+            pm2 restart server
