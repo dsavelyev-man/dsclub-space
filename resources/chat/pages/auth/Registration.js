@@ -43,6 +43,12 @@ const Registration = () => {
         "Content-Type": "multipart/form-data"
       }
     })
+
+    console.log(r)
+
+    if(r.status === 200) {
+      window.location.replace("/chat/login")
+    }
   }
 
   return <div className={classNames.container}>

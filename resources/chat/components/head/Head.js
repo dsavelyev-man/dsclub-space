@@ -3,6 +3,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import useIsGuest from "../../hooks/useIsGuest";
 import Auth from "./Auth";
 import Menu from "./Menu";
+import "../../scss/components/head.scss"
 
 const classNames = {
   container: "flex justify-between text-slate-100 items-center",

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Popover } from "@mui/material";
 import BasketItem from "./BasketItem";
-import { Scrollbars } from "react-custom-scrollbars";
+import { Scrollbar } from 'react-scrollbars-custom';
 
 const BasketPopover = (props) => {
   return (
@@ -19,13 +19,13 @@ const BasketPopover = (props) => {
         open={props.basket.isOpen}
         onClose={props.changeOpen}
       >
-        <Scrollbars autoHeight autoHeightMax={326} style={{ minWidth: 320 }}>
+        <Scrollbar autoHeight autoHeightMax={326} style={{ minWidth: 320 }}>
           <Box>
             {props.basket.products.map((product, index) => (
               <BasketItem product={product} key={index} />
             ))}
           </Box>
-        </Scrollbars>
+        </Scrollbar>
       </Popover>
     )
   );

@@ -29,6 +29,10 @@ const Login = () => {
     e.preventDefault()
 
     const r = await axios.post("/ajax/login", form)
+
+    if(r.status === 200) {
+      window.location.replace("/chat")
+    }
   }
 
   return <div className={classNames.container}>
