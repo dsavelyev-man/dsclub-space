@@ -28,7 +28,7 @@ jobs:
           # hello:)
           password: ${{ secrets.SERVER_USER_PASSWORD }}
           port: 22
-          source: "./build-copy/*"
+          source: "./build/*"
           rm: true
           target: "/var/www/dsclub.space/server"
 
