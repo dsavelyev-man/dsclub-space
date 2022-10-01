@@ -8,3 +8,5 @@ tmp
 
 public/assets
 resources/views/templates/*
+
+dsclub.session.sql
