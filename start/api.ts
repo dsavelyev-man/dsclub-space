@@ -6,7 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 Route.group(() => {
   Route.group(() => {
     Route.resource("/friends", "FriendsController");
-    Route.resource("/chats", "ChatsController");
+    Route.resource("/chats", "ChatsController")
+    Route.resource("/messages", "MessagesController");
 
   }).middleware("auth")
 

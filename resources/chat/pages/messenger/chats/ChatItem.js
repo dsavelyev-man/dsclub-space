@@ -13,8 +13,8 @@ const classNames = {
 const ChatItem = (props) => {
   const chat = props.chatMember.chat;
 
-  return <Link to={`/chat/messenger/${chat.path}`}>
-    <button className={classname(classNames.container, props.currentChatId === chat.path ? "bg-slate-700" : "")}>
+  return <Link to={`/chat/messenger/${chat.id}`}>
+    <button className={classname(classNames.container, props.currentChatId === chat.id ? "bg-slate-700" : "")}>
       <div className={classNames.preview} style={{
         backgroundImage: `url(${chat.preview_path.startsWith("http") ? chat.preview_path : "/assets" + chat.preview_path})`
       }}/>

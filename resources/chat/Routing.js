@@ -20,7 +20,7 @@ const ROUTES = [
   },
   {
     path: "/chat",
-    element: <Home />,
+    element: <Preview />,
   },
   {
     path: "/chat/messenger",
