@@ -2,6 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, CherryPick, column, HasOne, hasOne } from "@ioc:Adonis/Lucid/Orm";
 import Chat from "App/Models/Chat";
 import User from "App/Models/User";
+import Message from "App/Models/Message";
 
 export default class Member extends BaseModel {
   static table = "users_to_chats"
@@ -27,10 +28,14 @@ export default class Member extends BaseModel {
   })
   public user: HasOne<typeof User>
 
-  public serialize(cherryPick?: CherryPick) {
+  public async serialize(cherryPick?: CherryPick) {
     const object = super.serialize(cherryPick)
 
-    if(object.chat) object.last_message = "Hello world"
+    const message = await Message.query().where("chat_id", this.chat_id).orderBy("created_at", "desc").first()
+
+    if(object.chat) {
+      object.last_message = message
+    }
 
     return object
   }

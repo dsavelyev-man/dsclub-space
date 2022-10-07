@@ -17,7 +17,7 @@ export default class ChatsController {
       }
 
       return {
-        ...member.serialize(),
+        ...(await member.serialize()),
         chat
       }
     }))

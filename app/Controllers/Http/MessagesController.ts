@@ -17,7 +17,7 @@ export default class MessagesController {
       }
     }
 
-    const messages = await Message.query().orderBy("created_at", "asc").where("chat_id", chat).paginate(page, 40)
+    const messages = await Message.query().orderBy("created_at", "desc").where("chat_id", chat).paginate(page, 40)
 
     return messages.serialize().data.reverse()
   }

@@ -7,6 +7,7 @@ const classNames = {
 }
 
 const Messages = (props) => {
+
   return <div className={classNames.wrapper}>
     <Content {...props}/>
     <Panel {...props}/>

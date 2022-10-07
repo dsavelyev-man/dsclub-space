@@ -5,13 +5,20 @@ import classname from "classname"
 const classNames = {
   container: "flex items-center hover:bg-slate-600 p-2 rounded-full w-full text-slate-100",
   preview: "h-14 w-14 bg-indigo-100 mr-2 rounded-full bg-center bg-cover border",
-  title: "a",
+  title: "text-left",
   lastMessage: "text-xs text-left text-slate-400",
-  body: ""
+  body: "",
+  lastMessageYou: "text-slate-500"
 }
 
 const ChatItem = (props) => {
   const chat = props.chatMember.chat;
+  let lastMessage = props.chatMember.last_message
+  let lastText = lastMessage?.text || "";
+
+  if(lastText.length > 16) {
+    lastText = lastText.slice(0, 16).trim() + "..."
+  }
 
   return <Link to={`/chat/messenger/${chat.id}`}>
     <button className={classname(classNames.container, props.currentChatId === chat.id ? "bg-slate-700" : "")}>
@@ -25,7 +32,10 @@ const ChatItem = (props) => {
           }
         </p>
         <p className={classNames.lastMessage}>
-          {props.chatMember.last_message}
+          {
+            lastMessage.user_id === props.user.data.id && <span className={classNames.lastMessageYou}>You: </span>
+          }
+          {lastText}
         </p>
       </div>
     </button>

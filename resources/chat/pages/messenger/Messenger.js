@@ -7,6 +7,8 @@ import useGuestRedirect from "../../hooks/useGuestRedirect";
 import "../../scss/pages/messenger.scss"
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import useHandleMessage from "../../hooks/useHandleMessage";
+import { useSelector } from "react-redux";
 
 const classNames = {
   content: "home__content flex",
@@ -17,6 +19,7 @@ const Messenger = () => {
   useGuestRedirect(true, "/preview")
 
   const [chats, setChats] = React.useState([])
+  const user = useSelector(s => s.user)
   const [textareaHeight, setTextareaHeight] = React.useState(62)
   const params = useParams()
   const currentChatId = parseInt(params.id)
@@ -33,8 +36,15 @@ const Messenger = () => {
     getFriends()
   }, [])
 
+  React.useEffect(() => {
+    window.currentChatId = currentChatId
+  }, [currentChatId])
+
+  useHandleMessage()
+
   const helpers = {
     chats,
+    user: user,
     currentChatId,
     chat: chats.find((chat) => chat.chat.id === currentChatId),
     setTextareaHeight,
@@ -46,7 +56,7 @@ const Messenger = () => {
     <div className={classNames.content}>
       <Chats {...helpers}/>
       {
-        chats.length > 0 && <Messages {...helpers}/>
+        currentChatId ? (chats.length > 0 && <Messages {...helpers}/>) : "hello world"
       }
     </div>
   </div>

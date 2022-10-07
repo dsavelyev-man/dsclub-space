@@ -3,7 +3,7 @@ import TextareaAutosize from "react-textarea-autosize";
 
 const classNames = {
   container: "w-full p-2",
-  input: "w-full h-8 rounded-xl resize-none bg-slate-900 p-2 mb-2 drop-shadow-xl bg-slate-900 outline-none text-white placeholder:text-slate-400"
+  input: "w-full h-8 overflow-hidden rounded-xl resize-none bg-slate-900 p-2 mb-2 drop-shadow-xl bg-slate-900 outline-none text-white placeholder:text-slate-400"
 }
 
 const Panel = (props) => {
@@ -21,12 +21,14 @@ const Panel = (props) => {
     if(e.key === 'Enter') {
       e.preventDefault()
 
-      window.ws.io.emit("message", {
-        chat: props.chat.id,
-        extra: null,
-        text
-      })
-      setText("")
+      if(text) {
+        window.ws.io.emit("message", {
+          chat: props.currentChatId,
+          extra: null,
+          text
+        })
+        setText("")
+      }
     }
   }
 

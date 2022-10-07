@@ -26,6 +26,11 @@ export default class Message extends BaseModel {
   @column()
   public user_id: number
 
+  @column({
+    serialize: (big) => !!big,
+  })
+  public read: boolean;
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

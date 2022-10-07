@@ -20,6 +20,10 @@ const Content = (props) => {
   const chat = chats[props.currentChatId] || {};
   const messages = chat.messages || [];
 
+  React.useEffect(() => {
+    window.scrollbar = scrollbarRef;
+  }, [scrollbarRef])
+
   const getMessages = async (page=1, getChat=false) => {
     try {
       if(!finished || getChat) {
@@ -57,6 +61,7 @@ const Content = (props) => {
 
   React.useEffect(() => {
     window.chatScrollsTopPosition = {}
+    window.chatScrollsMaxTopPosition = {}
   }, [])
 
   React.useEffect(() => {
@@ -77,6 +82,10 @@ const Content = (props) => {
     if(message) {
       window.chatScrollsTopPosition[chat.id] = scrollValues.scrollTop
 
+      if((window.chatScrollsMaxTopPosition[chat.id] || 0) < scrollValues.scrollTop) {
+        window.chatScrollsMaxTopPosition[chat.id] = scrollValues.scrollTop
+      }
+
       const messageEl = document.getElementById(`chatMessage_${message.id}`)
       const rect = messageEl.getBoundingClientRect();
 
@@ -91,6 +100,12 @@ const Content = (props) => {
       width: "100%",
       height: `calc(100% - ${props.textareaHeight + 20}px)`,
     }}
+    contentProps={{
+      renderer: (props) => {
+        const { elementRef, ...restProps } = props;
+        return <span {...restProps} ref={elementRef} className="flex justify-end flex-col" />;
+      },
+    }}
     ref={scrollbarRef}
     onScroll={onScroll}
   >
@@ -101,6 +116,8 @@ const Content = (props) => {
         const data = {
           message,
           isLastMessage,
+          user: props.user,
+          currentChatId: props.currentChatId,
           key: message.id
         }
 
