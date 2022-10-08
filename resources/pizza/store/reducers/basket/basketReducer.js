@@ -75,8 +75,6 @@ export const basketSlice = createSlice({
             searchId: state.products.length,
           };
 
-          console.log(data, "aaaa");
-
           state.products.push(data);
         }
 

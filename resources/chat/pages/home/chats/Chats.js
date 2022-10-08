@@ -11,7 +11,6 @@ const Chats = () => {
     const getFriends = async () => {
       const r = axios.get("/ajax/friends")
 
-      console.log(r)
     }
 
     getFriends()

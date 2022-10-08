@@ -13,9 +13,24 @@ const classNames = {
 }
 
 const Friend = (props) => {
+  const contentRef = React.useRef()
 
+  React.useEffect(() => {
+    if(props.isLast) {
 
-  return <div className={classNames.container}>
+      const options = {
+        root: null,
+        rootMargin: "20px",
+        threshold: 1.0
+      };
+
+      window.lastFriendObserver = new IntersectionObserver(props.handleObserver, options)
+
+      window.lastFriendObserver.observe(contentRef.current)
+    }
+  }, [])
+
+  return <div ref={contentRef} className={classNames.container}>
     <div className={classNames.info}>
       <div className={classNames.avatar} style={{
         backgroundImage: `url(${props.friend.avatar_path.startsWith("http") ? props.friend.avatar_path : "/assets" + props.friend.avatar_path})`

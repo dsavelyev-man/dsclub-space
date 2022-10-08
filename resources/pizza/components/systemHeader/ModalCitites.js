@@ -9,7 +9,6 @@ const ModalCities = (props) => {
   const [cities, setCities] = React.useState([]);
   const dispatch = useDispatch();
 
-  console.log(props);
 
   React.useEffect(() => {
     const getCities = async () => {
@@ -18,7 +17,6 @@ const ModalCities = (props) => {
       if (cities.status === 200) {
         setCities(cities.data);
       } else {
-        console.log("error");
       }
     };
 

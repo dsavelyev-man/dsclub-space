@@ -8,6 +8,7 @@ import useAuth from "./hooks/useAuth";
 import { useSelector } from "react-redux";
 import Friends from "./pages/friends/Friends";
 import Messenger from "./pages/messenger/Messenger";
+import FriendsAdd from "./pages/friends/add/FriendsAdd";
 
 const ROUTES = [
   {
@@ -33,6 +34,10 @@ const ROUTES = [
   {
     path: "/chat/friends",
     element: <Friends />,
+  },
+  {
+    path: "/chat/friends/add",
+    element: <FriendsAdd />,
   },
   {
     path: "/chat/preview",

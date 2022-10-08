@@ -44,7 +44,6 @@ const Registration = () => {
       }
     })
 
-    console.log(r)
 
     if(r.status === 200) {
       window.location.replace("/chat/login")

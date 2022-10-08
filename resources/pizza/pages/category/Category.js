@@ -25,7 +25,6 @@ const Category = () => {
       break;
   }
 
-  console.log(categoryId);
   return (
     <>
       <ProductList type={categoryId} />

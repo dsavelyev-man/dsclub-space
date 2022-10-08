@@ -15,7 +15,6 @@ const Btn = styled(Button)({
 
 const BasketItem = (props) => {
   const data = props.product.data;
-  console.log(data);
   const dispatch = useDispatch();
 
   const onRemove = () => {

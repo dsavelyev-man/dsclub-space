@@ -6,7 +6,6 @@ import { colors } from "../../../theme";
 import DoneIcon from "@mui/icons-material/Done";
 
 const Cheese = (props) => {
-  console.log(props);
 
   const add = () => {
     props.addIngredient({

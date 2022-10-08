@@ -13,7 +13,6 @@ export default class ProductsController {
         productQuery.andWhere("type_id", "6");
         productQuery.orWhere("type_id", parseInt(params.type));
       } else {
-        console.log(params.type);
         productQuery.andWhere("type_id", parseInt(params.type));
       }
     }

@@ -17,8 +17,6 @@ const Avatar = (props) => {
     }))
   })
 
-  console.log(props.form.preview)
-
   const {getRootProps, getInputProps} = useDropzone({ onDrop })
 
   return <div
