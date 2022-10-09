@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 Route.group(() => {
   Route.group(() => {
 
+    Route.resource("/friends/requests", "FriendRequestsController")
+
     Route.post("/friends/add", "FriendsController.add")
     Route.resource("/friends", "FriendsController");
     Route.resource("/chats", "ChatsController")

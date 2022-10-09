@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import Friends from "./pages/friends/Friends";
 import Messenger from "./pages/messenger/Messenger";
 import FriendsAdd from "./pages/friends/add/FriendsAdd";
+import FriendRequests from "./pages/friends/requests/FriendRequests";
 
 const ROUTES = [
   {
@@ -38,6 +39,10 @@ const ROUTES = [
   {
     path: "/chat/friends/add",
     element: <FriendsAdd />,
+  },
+  {
+    path: "/chat/friends/requests",
+    element: <FriendRequests />,
   },
   {
     path: "/chat/preview",

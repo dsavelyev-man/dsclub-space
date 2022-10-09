@@ -1,6 +1,7 @@
 import React from "react";
 import debounce from "lodash/debounce"
 import LinkFriends from "./LinkFriends";
+import LinkRequests from "./LinkRequests";
 
 const classNames = {
   wrapper: "px-4 py-2 flex mb-2",
@@ -21,6 +22,7 @@ const Search = (props) => {
   return <div className={classNames.wrapper}>
     <input placeholder="Find By Username" onChange={onChange} className={classNames.field}/>
     <LinkFriends isAdd={props.isAdd}/>
+    <LinkRequests isRequests={props.isRequests}/>
   </div>
 }
 
