@@ -8,6 +8,7 @@ Route.group(() => {
 
     Route.resource("/friends/requests", "FriendRequestsController")
 
+    Route.get("/friends/chat/:id", "ChatsController.getFriendChat")
     Route.post("/friends/add", "FriendsController.add")
     Route.resource("/friends", "FriendsController");
     Route.resource("/chats", "ChatsController")

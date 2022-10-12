@@ -1,7 +1,8 @@
 import React from "react"
 import SendIcon from '@mui/icons-material/Send';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const classNames = {
   container: "text-slate-100 p-2 mb-2 flex justify-between rounded-full bg-slate-700 drop-shadow-xl",
@@ -14,6 +15,7 @@ const classNames = {
 
 const Friend = (props) => {
   const contentRef = React.useRef()
+  const navigate = useNavigate()
 
   React.useEffect(() => {
     if(props.isLast) {
@@ -30,6 +32,14 @@ const Friend = (props) => {
     }
   }, [])
 
+  const onClickChat = async () => {
+    try {
+      const r = await axios.get(`/ajax/friends/chat/${props.friend.id}`);
+
+      navigate(`/chat/messenger/${r.data}`)
+    } catch {}
+  }
+
   return <div ref={contentRef} className={classNames.container}>
     <div className={classNames.info}>
       <div className={classNames.avatar} style={{
@@ -43,11 +53,9 @@ const Friend = (props) => {
       </p>
     </div>
     <div className={classNames.actions}>
-      <Link to={`/chat/messenger/${props.friend.id}`}>
-        <button className={classNames.actionSendMessage}>
-          <SendIcon/>
-        </button>
-      </Link>
+      <button onClick={onClickChat} className={classNames.actionSendMessage}>
+        <SendIcon/>
+      </button>
       <button className={classNames.actionMoreVariants}>
         <MoreVertIcon/>
       </button>
