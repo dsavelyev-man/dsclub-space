@@ -8,6 +8,9 @@ import store from "./store/store";
 import Ws from "./classes/Ws";
 
 window.ws = new Ws()
+window.listeners = {
+
+}
 
 window.ws.io.on("text", (text) => {
   console.log(text)

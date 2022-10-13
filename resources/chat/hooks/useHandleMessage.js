@@ -6,9 +6,12 @@ const useHandleMessage = () => {
   const dispatch = useDispatch()
 
   React.useEffect(() => {
-    window.ws.io.on("message", (data) => {
-      dispatch(addMessage(data))
-    })
+    if(!window.listeners.message) {
+      window.ws.io.on("message", (data) => {
+        dispatch(addMessage(data))
+      })
+      window.listeners.message = true
+    }
   }, [])
 }
 
