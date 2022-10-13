@@ -22,7 +22,7 @@ export default class ChatsController {
 
       const memberData = await member.serialize();
 
-      if(!memberData.last_message) return;
+      // if(!memberData.last_message) return;
 
       return {
         ...(await memberData),
@@ -30,7 +30,8 @@ export default class ChatsController {
       }
     }))
 
-    return data.filter(item => item !== undefined)
+    return data
+    // return data.filter(item => item !== undefined)
   }
 
   async getFriendChat({auth, request, response}) {
