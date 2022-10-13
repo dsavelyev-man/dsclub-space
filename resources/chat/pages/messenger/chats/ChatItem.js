@@ -31,12 +31,15 @@ const ChatItem = (props) => {
             chat.title
           }
         </p>
-        <p className={classNames.lastMessage}>
-          {
-            lastMessage.user_id === props.user.data.id && <span className={classNames.lastMessageYou}>You: </span>
-          }
-          {lastText}
-        </p>
+        {
+          lastMessage &&  <p className={classNames.lastMessage}>
+            {
+              lastMessage.user_id === props.user.data.id && <span className={classNames.lastMessageYou}>You: </span>
+            }
+            {lastText}
+          </p>
+        }
+
       </div>
     </button>
   </Link>
