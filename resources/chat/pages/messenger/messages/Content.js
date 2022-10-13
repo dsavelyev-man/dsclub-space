@@ -69,11 +69,11 @@ const Content = (props) => {
 
     if(!chats[props.currentChatId]) {
       getMessages(1, true).then(() => {
-        scrollbarRef.current.scrollToBottom()
+        scrollbarRef.current?.scrollToBottom()
       })
     }
 
-    scrollbarRef.current.scrollTo(0, window.chatScrollsTopPosition[chat.id])
+    scrollbarRef.current?.scrollTo(0, window.chatScrollsTopPosition[chat.id])
   }, [props.currentChatId])
 
   const onScroll = (scrollValues) => {

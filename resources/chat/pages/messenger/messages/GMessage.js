@@ -18,7 +18,7 @@ const GMessage = (props) => {
       })
     }
 
-    if(props.isLastMessage && window.scrollbar.current.scrollValues.scrollTop > window.chatScrollsMaxTopPosition[window.currentChatId] - 120) {
+    if(props.isLastMessage && window.scrollbar.current?.scrollValues.scrollTop > window.chatScrollsMaxTopPosition[window.currentChatId] - 120) {
       window.scrollbar.current.scrollToBottom()
     }
 
