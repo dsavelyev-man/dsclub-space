@@ -49,6 +49,7 @@ Encore.addEntry("app", "./resources/index/app.js");
 Encore.addEntry("pizza", "./resources/pizza/app.js");
 Encore.addEntry("editor", "./resources/editor/app.js");
 Encore.addEntry("chat", "./resources/chat/app.js");
+Encore.addEntry("sandbox", "./resources/sandbox/app.js");
 
 Encore.enableReactPreset();
 Encore.enableSassLoader();

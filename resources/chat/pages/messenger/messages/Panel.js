@@ -20,7 +20,6 @@ const Panel = (props) => {
   const onKeyPress = (e) => {
     if(e.key === 'Enter') {
       e.preventDefault()
-
       if(text) {
         window.ws.io.emit("message", {
           chat: props.currentChatId,

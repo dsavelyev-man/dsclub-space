@@ -8,7 +8,7 @@ import Database from "@ioc:Adonis/Lucid/Database";
 
 export default class ChatsController {
   async index({ auth }) {
-    const chats = await Member.query().where("user_id", auth.user.id).preload("chat")
+    const chats = await Member.query().where("user_id", auth.user.id).preload("chat").orderBy("lastMessageAt", "desc")
 
     const data = await Promise.all(chats.map(async (member) => {
       const chat = member.chat.serialize();

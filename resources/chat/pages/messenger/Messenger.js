@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import useHandleMessage from "../../hooks/useHandleMessage";
 import { useSelector } from "react-redux";
+import MessagesCap from "./messages/MessagesCap";
 
 const classNames = {
   content: "home__content flex",
@@ -56,7 +57,7 @@ const Messenger = () => {
     <div className={classNames.content}>
       <Chats {...helpers}/>
       {
-        currentChatId ? (chats.length > 0 && <Messages {...helpers}/>) : "hello world"
+        currentChatId ? (chats.length > 0 && <Messages {...helpers}/>) : <MessagesCap/>
       }
     </div>
   </div>

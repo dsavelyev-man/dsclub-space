@@ -40,9 +40,18 @@ export default class Member extends BaseModel {
     return object
   }
 
+  @column({ serializeAs: null })
+  public lastMessageId: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column.dateTime({ serializeAs: null })
+  public lastMessageAt: DateTime
+
+  @hasOne(() => Message)
+  public message: HasOne<typeof Message>
 }

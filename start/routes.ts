@@ -55,6 +55,15 @@ Route.get("/chat/", async ({ view }) => {
   return view.render("chat");
 });
 
+Route.get("/sandbox/*", async ({ view }) => {
+  return view.render("sandbox");
+});
+
+Route.get("/sandbox/", async ({ view }) => {
+  return view.render("sandbox");
+});
+
+
 Route.get("/*", async ({ view }) => {
   return view.render("index");
 });

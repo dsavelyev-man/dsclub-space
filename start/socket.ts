@@ -9,10 +9,12 @@ Ws.io.on("connection", async (socket: Socket) => {
 
   await messageService.init(socket)
 
+  Ws.addSocket(socket, messageService.user.id, messageService)
+
   socket.on("message", (data) => messageService.onMessage(data, socket))
   socket.on("read", (data) => messageService.onRead(data, socket))
 
   socket.on("disconnect", (socket: Socket) => {
-
+    Ws.removeSocket(socket, messageService.user.id)
   })
 })

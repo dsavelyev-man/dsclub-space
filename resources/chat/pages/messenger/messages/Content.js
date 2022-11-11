@@ -73,7 +73,11 @@ const Content = (props) => {
       })
     }
 
-    scrollbarRef.current?.scrollTo(0, window.chatScrollsTopPosition[chat.id])
+    if(window.chatScrollsTopPosition[chat.id]) {
+      scrollbarRef.current?.scrollTo(0, window.chatScrollsTopPosition[chat.id])
+    } else {
+      scrollbarRef.current?.scrollToBottom()
+    }
   }, [props.currentChatId])
 
   const onScroll = (scrollValues) => {
