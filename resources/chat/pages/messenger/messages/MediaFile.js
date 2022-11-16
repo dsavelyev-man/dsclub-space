@@ -15,11 +15,7 @@ const MediaFile = (props) => {
       content = <img className={classNames.image} src={path} alt={props.name}/>
   }
 
-  const onClick = () => {
-    props.onAttach(props.media)
-  }
-
-  return <div onClick={onClick} className={classNames.container}>
+  return <div className={classNames.container}>
     {
       content
     }

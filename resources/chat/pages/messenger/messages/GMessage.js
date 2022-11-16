@@ -1,8 +1,9 @@
 import React from "react";
+import Files from "./Files";
 
 const classNames = {
-  container: "w-full flex p-2",
-  message: "bg-slate-900 chat-message  p-2 rounded-xl rounded-tl-none text-slate-200"
+  container: "w-full flex p-2 flex-col",
+  message: "bg-slate-900 chat-message p-2 rounded-xl rounded-tl-none text-slate-200"
 
 }
 
@@ -30,6 +31,7 @@ const GMessage = (props) => {
         props.message.text
       }
     </div>
+    <Files files={props.message.extra?.files}/>
   </div>
 }
 

@@ -1,7 +1,8 @@
 import React from "react";
+import Files from "./Files";
 
 const classNames = {
-  container: "w-full flex p-2",
+  container: "w-full flex p-2 flex-col items-end",
   message: "ml-auto chat-message bg-slate-700 p-2 rounded-xl rounded-br-none text-slate-200"
 }
 
@@ -28,6 +29,7 @@ const YMessage = (props) => {
         props.message.text
       }
     </div>
+    <Files files={props.message.extra?.files}/>
   </div>
 }
 

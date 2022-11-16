@@ -3,8 +3,9 @@ import { createPortal } from "react-dom";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import Files from "./Files";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { unshiftFile } from "../../../../store/reducers/files/filesReducer";
+import { setMessage } from "../../../../store/reducers/chats/chatsReducer";
 
 const classNames = {
   container: "absolute left-0 flex justify-center items-center top-0 w-screen h-screen z-50",
@@ -16,6 +17,7 @@ const classNames = {
 
 const AttachFilePopup = (props) => {
   const dispatch = useDispatch()
+  const message = useSelector((s) => s.chats.chats[window.currentChatId]?.message)
 
   const onDrop = React.useCallback((acceptedFiles) => {
     console.log(acceptedFiles)
@@ -44,13 +46,26 @@ const AttachFilePopup = (props) => {
     props.setShow(false)
   }
 
+  const onAttach = (file) => {
+    dispatch(setMessage({
+      id: window.currentChatId,
+      message: {
+        ...message,
+        extra: {
+          ...message.extra,
+          files: [...(message.extra?.files || []), file]
+        }
+      }
+    }))
+  }
+
   const content = <div className={classNames.container}>
     <div className={classNames.content}>
       <div {...getRootProps()} className={classNames.dropHere}>
         <p>Drop Here</p>
         <input {...getInputProps()}/>
       </div>
-      <Files/>
+      <Files onAttach={onAttach}/>
     </div>
     <div onClick={onClickBackground} className={classNames.background}/>
   </div>

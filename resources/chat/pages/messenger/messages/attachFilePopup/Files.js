@@ -8,7 +8,7 @@ const classNames = {
   container: "flex flex-wrap chat-messages-files"
 }
 
-const Files = () => {
+const Files = (props) => {
   const files = useSelector((s) => s.files.data)
   const [meta, setMeta] = React.useState({
     current_page: 1
@@ -39,7 +39,7 @@ const Files = () => {
 
   return <div className={classNames.container}>
     {
-      files.map((file) => <MediaFile media={file} key={file.id}/>)
+      files.map((file) => <MediaFile onAttach={props.onAttach} media={file} key={file.id}/>)
     }
   </div>
 }

@@ -5,6 +5,7 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import AttachFilePopup from "./attachFilePopup/AttachFilePopup";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessage } from "../../../store/reducers/chats/chatsReducer";
+import minimizeExtra from "./helpers/minimizeExtra";
 
 const classNames = {
   container: "w-full p-2 flex",
@@ -48,7 +49,7 @@ const Panel = (props) => {
       if(message.text) {
         window.ws.io.emit("message", {
           chat: props.currentChatId,
-          extra: null,
+          extra: minimizeExtra(message.extra),
           text: message.text
         })
         dispatch(setMessage({
@@ -66,7 +67,7 @@ const Panel = (props) => {
     if(message.text) {
       window.ws.io.emit("message", {
         chat: props.currentChatId,
-        extra: null,
+        extra: minimizeExtra(message.extra),
         text: message.text
       })
       dispatch(setMessage({

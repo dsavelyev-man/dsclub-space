@@ -50,6 +50,10 @@ class MessageService {
     return message
   }
 
+  static async getExtra(extra: undefined|{files?: number[]}) {
+
+  }
+
   async onMessage(_data: TBaseMessage, socket: Socket) {
     if(!_data.extra && !_data.text) return
 
@@ -88,7 +92,7 @@ class MessageService {
       member.save()
 
       Ws.io.to(`chat:${chat.id}`).emit("message", {
-        message: message.serialize(),
+        message: (await message.serialize()),
         chat: chat.id
       })
     }
