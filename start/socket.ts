@@ -9,6 +9,11 @@ Ws.io.on("connection", async (socket: Socket) => {
 
   await messageService.init(socket)
 
+  if(!messageService.user) {
+    socket.disconnect()
+    return
+  }
+
   Ws.addSocket(socket, messageService.user.id, messageService)
 
   socket.on("message", (data) => messageService.onMessage(data, socket))

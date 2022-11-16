@@ -14,6 +14,8 @@ Route.group(() => {
     Route.resource("/chats", "ChatsController")
     Route.resource("/messages", "MessagesController");
 
+    Route.resource("/media", "MediaController");
+
   }).middleware("auth")
 
   Route.get("/auth", "UsersController.auth")
