@@ -9,10 +9,25 @@ export const dragSlice = createSlice({
   initialState,
   reducers: {
     addChat(state, action) {
-
       state.chats[action.payload.id] = {
-        ...action.payload
+        ...action.payload,
+        message: {
+          text: "",
+          extra: null
+        }
       }
+    },
+    setMessage(state, action) {
+      const chat = state.chats[action.payload.id];
+
+      if(state.chats[action.payload.id]) {
+        state.chats[action.payload.id].message = action.payload.message
+      }
+    },
+    setChats(state, action) {
+      action.chats.forEach((chat) => {
+
+      })
     },
     addMessages(state, action) {
       const id = action.payload.chat;
@@ -33,6 +48,6 @@ export const dragSlice = createSlice({
   },
 });
 
-export const { addChat, addMessages, addMessage } = dragSlice.actions;
+export const { addChat, addMessages, addMessage, setMessage, setChats } = dragSlice.actions;
 
 export default dragSlice.reducer;

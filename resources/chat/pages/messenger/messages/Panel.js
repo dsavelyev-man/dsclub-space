@@ -3,6 +3,8 @@ import TextareaAutosize from "react-textarea-autosize";
 import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import AttachFilePopup from "./attachFilePopup/AttachFilePopup";
+import { useDispatch, useSelector } from "react-redux";
+import { setMessage } from "../../../store/reducers/chats/chatsReducer";
 
 const classNames = {
   container: "w-full p-2 flex",
@@ -12,7 +14,10 @@ const classNames = {
 }
 
 const Panel = (props) => {
-  const [text, setText] = React.useState("")
+  const dispatch = useDispatch()
+  const chat = useSelector((s) => s.chats.chats[props.currentChatId])
+
+  const message = chat?.message || {}
   const [showAttachFile, setShowAttachFile] = React.useState(false)
 
   const onHeightChange = (height) => {
@@ -20,31 +25,57 @@ const Panel = (props) => {
   }
 
   const onChange = (e) => {
-    setText(e.target.value)
+    dispatch(setMessage({
+      id: props.currentChatId,
+      message: {
+        ...message,
+        text: e.target.value,
+      }
+    }))
+
+    console.log({
+      id: props.currentChatId,
+      message: {
+        ...message,
+        text: e.target.value,
+      }
+    })
   }
 
   const onKeyPress = (e) => {
     if(e.key === 'Enter') {
       e.preventDefault()
-      if(text) {
+      if(message.text) {
         window.ws.io.emit("message", {
           chat: props.currentChatId,
           extra: null,
-          text
+          text: message.text
         })
-        setText("")
+        dispatch(setMessage({
+          id: props.currentChatId,
+          message: {
+            text: "",
+            extra: null
+          }
+        }))
       }
     }
   }
 
   const onSend = () => {
-    if(text) {
+    if(message.text) {
       window.ws.io.emit("message", {
         chat: props.currentChatId,
         extra: null,
-        text
+        text: message.text
       })
-      setText("")
+      dispatch(setMessage({
+        id: props.currentChatId,
+        message: {
+          text: "",
+          extra: null
+        }
+      }))
     }
   }
 
@@ -53,11 +84,15 @@ const Panel = (props) => {
   }
 
   return <div className={classNames.container}>
-    <TextareaAutosize onKeyPress={onKeyPress} value={text} onChange={onChange} placeholder="Write Here" onHeightChange={onHeightChange} className={classNames.input}/>
-    <button onClick={onSend} className={classNames.sendButton}><SendIcon/></button>
-    <button onClick={openAttachFile} className={classNames.attachButton}><AttachFileIcon/></button>
     {
-      showAttachFile && <AttachFilePopup setShow={setShowAttachFile}/>
+      message.text !== undefined && <>
+        <TextareaAutosize onKeyPress={onKeyPress} value={message.text} onChange={onChange} placeholder="Write Here" onHeightChange={onHeightChange} className={classNames.input}/>
+        <button onClick={onSend} className={classNames.sendButton}><SendIcon/></button>
+        <button onClick={openAttachFile} className={classNames.attachButton}><AttachFileIcon/></button>
+        {
+          showAttachFile && <AttachFilePopup setShow={setShowAttachFile}/>
+        }
+      </>
     }
   </div>
 }

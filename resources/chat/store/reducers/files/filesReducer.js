@@ -14,7 +14,9 @@ export const filesSlice = createSlice({
     unshiftFile(state, action) {
       state.data.unshift(action.payload)
 
-      state.data.pop()
+      if(state.data.length >= 9) {
+        state.data.pop()
+      }
     }
   },
 });
