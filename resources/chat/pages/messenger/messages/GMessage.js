@@ -2,7 +2,7 @@ import React from "react";
 import Files from "./Files";
 
 const classNames = {
-  container: "w-full flex p-2 flex-col",
+  container: "w-full flex p-2 flex-col items-start",
   message: "bg-slate-900 chat-message p-2 rounded-xl rounded-tl-none text-slate-200"
 
 }
