@@ -2,7 +2,6 @@ import React from "react";
 import MediaFile from "./MediaFile";
 
 const Files = (props) => {
-  console.log(props.files)
 
   return props.files && <div>
     {

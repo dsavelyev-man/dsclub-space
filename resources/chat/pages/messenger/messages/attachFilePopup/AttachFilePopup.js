@@ -20,7 +20,6 @@ const AttachFilePopup = (props) => {
   const message = useSelector((s) => s.chats.chats[window.currentChatId]?.message)
 
   const onDrop = React.useCallback((acceptedFiles) => {
-    console.log(acceptedFiles)
     const form = new FormData()
 
     form.append("file", acceptedFiles[0])
@@ -47,16 +46,36 @@ const AttachFilePopup = (props) => {
   }
 
   const onAttach = (file) => {
-    dispatch(setMessage({
-      id: window.currentChatId,
-      message: {
-        ...message,
-        extra: {
-          ...message.extra,
-          files: [...(message.extra?.files || []), file]
+    const files = message.extra?.files && [...message.extra?.files] || [];
+    const index = files.findIndex(f => f.id === file.id)
+
+    if(index === -1) {
+      files.push(file)
+
+      dispatch(setMessage({
+        id: window.currentChatId,
+        message: {
+          ...message,
+          extra: {
+            ...message.extra,
+            files
+          }
         }
-      }
-    }))
+      }))
+    } else {
+      files.splice(index, 1)
+
+      dispatch(setMessage({
+        id: window.currentChatId,
+        message: {
+          ...message,
+          extra: {
+            ...message.extra,
+            files
+          }
+        }
+      }))
+    }
   }
 
   const content = <div className={classNames.container}>
@@ -65,7 +84,7 @@ const AttachFilePopup = (props) => {
         <p>Drop Here</p>
         <input {...getInputProps()}/>
       </div>
-      <Files onAttach={onAttach}/>
+      <Files files={message.extra?.files || []} onAttach={onAttach}/>
     </div>
     <div onClick={onClickBackground} className={classNames.background}/>
   </div>

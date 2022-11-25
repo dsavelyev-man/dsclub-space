@@ -2,7 +2,7 @@ import React from "react";
 
 const classNames = {
   container: "h-40 w-40 m-2 flex justify-center items-center",
-  image: "max-h-40"
+  image: "max-h-40 rounded shadow"
 }
 
 const MediaFile = (props) => {

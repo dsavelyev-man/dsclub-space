@@ -10,8 +10,18 @@ import Friends from "./pages/friends/Friends";
 import Messenger from "./pages/messenger/Messenger";
 import FriendsAdd from "./pages/friends/add/FriendsAdd";
 import FriendRequests from "./pages/friends/requests/FriendRequests";
+import Admin from "./pages/admin/Admin";
+import Users from "./pages/admin/users/Users";
 
 const ROUTES = [
+  {
+    path: "/chat/admin",
+    element: <Admin />,
+  },
+  {
+    path: "/chat/admin/users",
+    element: <Users/>
+  },
   {
     path: "/chat/registration",
     element: <Registration/>

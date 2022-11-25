@@ -39,7 +39,12 @@ const Files = (props) => {
 
   return <div className={classNames.container}>
     {
-      files.map((file) => <MediaFile onAttach={props.onAttach} media={file} key={file.id}/>)
+      files.map((file) => <MediaFile
+        isActive={props.files.findIndex((f) => f.id === file.id) !== -1}
+        onAttach={props.onAttach}
+        media={file}
+        key={file.id}
+      />)
     }
   </div>
 }
