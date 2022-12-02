@@ -1,8 +1,11 @@
+import { positionStyle } from "../presets/position";
+
 const style = () => {
   return [
-    "&",
+    "&.ds-heading",
     ["", "justify-content", "content.settings.alignment"],
     ["", "color", "style.font.color"],
+    ...positionStyle,
     "}",
   ];
 };

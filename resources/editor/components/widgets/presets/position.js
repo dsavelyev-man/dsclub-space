@@ -22,4 +22,10 @@ const position = new Group("Position", {
   }),
 });
 
+export const positionStyle = [
+  ["dimensions", "margin", "advanced.position.margin"],
+  ["dimensions", "padding", "advanced.position.padding"],
+  ["", "z-index", "advanced.position.zIndex"]
+]
+
 export default position;

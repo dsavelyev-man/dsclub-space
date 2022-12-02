@@ -1,49 +1,59 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { update } from "../../../../store/reducers/widgets/widgetsReducer";
-import { HexColorPicker } from "react-colorful";
-import { Popover } from "@headlessui/react";
+import TextFieldsIcon from '@mui/icons-material/TextFields';
+import WebFont from "webfontloader"
+import { setEvent } from "../../../../store/reducers/typography/typographyReducer";
+import { v4 as uuid } from "uuid";
+
+// WebFont.load({
+//   google: {
+//     families: ['Droid Sans', 'Droid Serif']
+//   }
+// })
 
 const classNames = {
-  color: "w-8 h-8 bg-slate-500 rounded",
-  button: "mr-2",
+  button: "w-8 h-8 rounded bg-slate-800 mr-2 outline-none",
   container: "py-2 flex justify-between items-center",
   label: "mx-2",
-  content: "",
+  content: "w-40 bg-slate-800 rounded",
   popover: "absolute",
 };
 
-const TypograhicController = (props) => {
+const TypographicController = (props) => {
   const dispatch = useDispatch();
-  const [color, setColor] = React.useState(props.controller.value);
+  const [typographic, setTypographic] = React.useState(props.controller.value);
 
-  const handleChange = (color) => {
-    setColor(color);
-    props.controller.setValue(color);
+  const onContent = (e) => {
+    const button = e.currentTarget;
 
-    dispatch(update(props.guid));
-  };
+    const boundingClientRect = button.getBoundingClientRect()
+
+    window.ds.typographicOnSelect = (font) => {
+      console.log(font)
+    }
+
+    dispatch(setEvent({
+      onSelectUpdate: uuid()
+    }))
+
+    const content = window.ds.typographicContentRef.current;
+
+    content.style.left = `${boundingClientRect.x}px`;
+    content.style.top = `${boundingClientRect.y + 34}px`;
+    content.style.display = "block"
+  }
 
   return (
     <div className={classNames.container}>
       {props.controller.label && (
         <label className={classNames.label}>{props.controller.label}</label>
       )}
-      <Popover>
-        <Popover.Button className={classNames.button}>
-          <div
-            className={classNames.color}
-            style={{
-              background: color,
-            }}
-          ></div>
-        </Popover.Button>
-        <Popover.Panel className={classNames.popover}>
-          <HexColorPicker color={color} onChange={handleChange} />
-        </Popover.Panel>
-      </Popover>
+      <button onClick={onContent} className={classNames.button}>
+        <TextFieldsIcon/>
+      </button>
     </div>
   );
 };
 
-export default TypograhicController;
+export default TypographicController;

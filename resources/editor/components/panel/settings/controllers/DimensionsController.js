@@ -42,7 +42,7 @@ const DimensionsController = (props) => {
 
   const handleChange = (e, index) => {
     const value = props.controller.value;
-    const targetValue = parseFloat(e.target.value);
+    const targetValue = e.target.value;
 
     if (!props.controller.value.bind) {
       value[index] = targetValue;

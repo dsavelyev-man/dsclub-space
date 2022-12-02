@@ -9,6 +9,7 @@ import DimensionsController from "../../panel/settings/controllers/DimensionsCon
 import NumberController from "../../panel/settings/controllers/NumberController";
 import position from "../presets/position";
 import ColorController from "../../panel/settings/controllers/ColorController";
+import TypographicController from "../../panel/settings/controllers/TypographicController";
 
 const settings = () => {
   return {
@@ -54,14 +55,18 @@ const settings = () => {
       }),
     }),
     style: new Tab({
-      position,
       font: new Group("Font", {
         color: new Controller(ColorController, {
           label: "Color",
         }),
+        typographic: new Controller(TypographicController, {
+          label: "Typographic",
+        }),
       }),
     }),
-    advanced: new Tab({}),
+    advanced: new Tab({
+      position
+    }),
   };
 };
 

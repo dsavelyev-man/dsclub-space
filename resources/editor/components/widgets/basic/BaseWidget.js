@@ -4,6 +4,7 @@ import clone from "lodash/clone";
 import { get } from "object-path";
 import isString from "lodash/isString";
 import isArray from "lodash/isArray";
+import dimensionsToStyleString from "./helpers/dimensionsToStyleString";
 
 export default class BaseWidget {
   constructor() {
@@ -28,7 +29,7 @@ export default class BaseWidget {
 
   prop(name, value) {
     if (name === "class") {
-      return `${name}="${constants.basicClass} ${constants.basicClass}-${this.guid} ${value}"`;
+      return `${name}="${value} ${constants.basicClass} ${constants.basicClass}-${this.guid}"`;
     } else {
       return `${name}="${value}"`;
     }
@@ -100,8 +101,16 @@ export default class BaseWidget {
         }
       } else if (isArray(elem)) {
         switch (elem[0]) {
+          case "dimensions":
+            const value = this.getValue(elem[2]);
+            const stringValue = dimensionsToStyleString(value);
+
+            if(stringValue) {
+              string = string + `${elem[1]}: ${stringValue};`;
+            }
+            break;
           default:
-            if (this.getValue(elem[2])) {
+            if(this.getValue(elem[2])) {
               string = string + `${elem[1]}: ${this.getValue(elem[2])};`;
             }
         }

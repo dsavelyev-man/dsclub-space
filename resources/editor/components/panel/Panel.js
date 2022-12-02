@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Widgets from "./widgets/Widgets";
 import Settings from "./settings/Settings";
 import Menu from "./Menu";
+import TypographicSelectContent from "./settings/controllers/components/TypographicSelectContent";
 
 const classNames = {
   container: "h-screen ds-panel fixed w-72 bg-slate-800",
@@ -28,6 +29,7 @@ const Panel = () => {
       <Header />
       {content}
       <Menu />
+      <TypographicSelectContent/>
     </div>
   );
 };
