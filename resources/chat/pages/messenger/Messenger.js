@@ -41,7 +41,7 @@ const Messenger = () => {
     window.currentChatId = currentChatId
   }, [currentChatId])
 
-  useHandleMessage()
+  useHandleMessage(user.data.id)
 
   const helpers = {
     chats,

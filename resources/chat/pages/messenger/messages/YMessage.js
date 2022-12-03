@@ -24,11 +24,7 @@ const YMessage = (props) => {
   }, [])
 
   return <div id={`chatMessage_${props.message.id}`} className={classNames.container} ref={ref}>
-    <div className={classNames.message}>
-      {
-        props.message.text
-      }
-    </div>
+    <div className={classNames.message} dangerouslySetInnerHTML={{ __html: props.message.text }}/>
     <Files files={props.message.extra?.files}/>
   </div>
 }

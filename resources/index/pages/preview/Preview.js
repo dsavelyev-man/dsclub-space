@@ -1,4 +1,5 @@
 import React from "react";
+import "../../scss/pages/preview.scss"
 import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ChatIcon from '@mui/icons-material/Chat';

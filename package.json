@@ -80,6 +80,7 @@
     "classname": "^0.0.0",
     "country-list": "^2.2.0",
     "dayjs": "^1.11.3",
+    "dompurify": "^2.4.1",
     "formik": "^2.2.9",
     "lodash": "^4.17.21",
     "luxon": "^2.4.0",
@@ -109,6 +110,8 @@
     "socket.io": "^4.5.2",
     "socket.io-client": "^4.5.2",
     "source-map-support": "^0.5.21",
-    "uuid": "^8.3.2"
+    "three": "^0.147.0",
+    "uuid": "^8.3.2",
+    "webfontloader": "^1.6.28"
   }
 }

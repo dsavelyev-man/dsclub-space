@@ -4,7 +4,7 @@ import DoneIcon from '@mui/icons-material/Done';
 
 const classNames = {
   container: "h-40 w-40 m-2 flex justify-center relative items-center rounded-xl cursor-pointer",
-  image: "max-h-40 rounded shadow",
+  image: "max-h-40 rounded shadow-lg shadow-cyan-500/10",
   isActiveTag: "absolute right-0 top-0 p-1 bg-sky-500 text-slate-100 rounded-full",
   content: (active) => classname("duration-200 ease-out", active && "scale-90")
 }

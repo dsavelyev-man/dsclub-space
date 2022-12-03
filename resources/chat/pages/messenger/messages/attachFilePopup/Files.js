@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { updateFiles } from "../../../../store/reducers/files/filesReducer";
 import MediaFile from "./MediaFile";
+import Pagination from "./Pagination";
+import PaginationCap from "./PaginationCap";
 
 const classNames = {
-  container: "flex flex-wrap chat-messages-files"
+  container: "flex flex-wrap chat-messages-files pb-2 overflow-hidden"
 }
 
 const Files = (props) => {
@@ -45,6 +47,9 @@ const Files = (props) => {
         media={file}
         key={file.id}
       />)
+    }
+    {
+      meta.total ? <Pagination getFiles={getFiles} meta={meta}/> : <PaginationCap/>
     }
   </div>
 }

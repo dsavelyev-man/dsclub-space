@@ -6,6 +6,7 @@ import AttachFilePopup from "./attachFilePopup/AttachFilePopup";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessage } from "../../../store/reducers/chats/chatsReducer";
 import minimizeExtra from "./helpers/minimizeExtra";
+import editMessageText from "./helpers/editMessageText";
 
 const classNames = {
   container: "w-full p-2 flex",
@@ -44,22 +45,9 @@ const Panel = (props) => {
   }
 
   const onKeyPress = (e) => {
-    if(e.key === 'Enter') {
+    if(e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
-      if(message.text) {
-        window.ws.io.emit("message", {
-          chat: props.currentChatId,
-          extra: minimizeExtra(message.extra),
-          text: message.text
-        })
-        dispatch(setMessage({
-          id: props.currentChatId,
-          message: {
-            text: "",
-            extra: null
-          }
-        }))
-      }
+      onSend()
     }
   }
 
@@ -68,7 +56,7 @@ const Panel = (props) => {
       window.ws.io.emit("message", {
         chat: props.currentChatId,
         extra: minimizeExtra(message.extra),
-        text: message.text
+        text:  editMessageText(message.text)
       })
       dispatch(setMessage({
         id: props.currentChatId,
@@ -87,7 +75,7 @@ const Panel = (props) => {
   return <div className={classNames.container}>
     {
       message.text !== undefined && <>
-        <TextareaAutosize onKeyPress={onKeyPress} value={message.text} onChange={onChange} placeholder="Write Here" onHeightChange={onHeightChange} className={classNames.input}/>
+        <TextareaAutosize maxRows={8} onKeyPress={onKeyPress} value={message.text} onChange={onChange} placeholder="Write Here" onHeightChange={onHeightChange} className={classNames.input}/>
         <button onClick={onSend} className={classNames.sendButton}><SendIcon/></button>
         <button onClick={openAttachFile} className={classNames.attachButton}><AttachFileIcon/></button>
         {

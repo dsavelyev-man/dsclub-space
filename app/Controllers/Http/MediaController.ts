@@ -42,8 +42,10 @@ export default class MediaController {
     }
   }
 
-  async index({ auth }) {
-    const media = await Media.query().where("user_id", auth.user.id).orderBy("created_at", "desc").paginate(1, 8)
+  async index({ auth, request }) {
+    const page = request.qs().page || 1
+
+    const media = await Media.query().where("user_id", auth.user.id).orderBy("created_at", "desc").paginate(page, 8)
 
     return media
   }
