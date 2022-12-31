@@ -5,6 +5,8 @@ import TextFieldsIcon from '@mui/icons-material/TextFields';
 import WebFont from "webfontloader"
 import { setEvent } from "../../../../store/reducers/typography/typographyReducer";
 import { v4 as uuid } from "uuid";
+import { Popover } from "@headlessui/react";
+
 
 // WebFont.load({
 //   google: {
@@ -17,17 +19,20 @@ const classNames = {
   container: "py-2 flex justify-between items-center",
   label: "mx-2",
   content: "w-40 bg-slate-800 rounded",
-  popover: "absolute",
+  popover: "absolute bg-slate-600 p-2 rounded",
+  familyInput: "cursor-pointer bg-slate-900 rounded-md p-1"
 };
 
 const TypographicController = (props) => {
   const dispatch = useDispatch();
   const [typographic, setTypographic] = React.useState(props.controller.value);
 
-  const onContent = (e) => {
-    const button = e.currentTarget;
+  const onFamilyOpen = (e) => {
+    e.preventDefault()
 
-    const boundingClientRect = button.getBoundingClientRect()
+    const input = e.currentTarget;
+
+    const boundingClientRect = input.getBoundingClientRect()
 
     window.ds.typographicOnSelect = (font) => {
       console.log(font)
@@ -49,9 +54,20 @@ const TypographicController = (props) => {
       {props.controller.label && (
         <label className={classNames.label}>{props.controller.label}</label>
       )}
-      <button onClick={onContent} className={classNames.button}>
-        <TextFieldsIcon/>
-      </button>
+      <Popover>
+        <Popover.Button className={classNames.button}>
+          <TextFieldsIcon/>
+        </Popover.Button>
+        <Popover.Panel className={classNames.popover}>
+          <input
+            onClick={onFamilyOpen}
+            onFocus={(e) => e.currentTarget.blur()}
+            className={classNames.familyInput}
+            value={props.controller.value?.family}
+            placeholder="Font Family"
+          />
+        </Popover.Panel>
+      </Popover>
     </div>
   );
 };

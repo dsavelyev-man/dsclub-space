@@ -63,6 +63,14 @@ Route.get("/sandbox/", async ({ view }) => {
   return view.render("sandbox");
 });
 
+Route.get("/game/*", async ({ view }) => {
+  return view.render("game");
+});
+
+Route.get("/game/", async ({ view }) => {
+  return view.render("game");
+});
+
 
 Route.get("/*", async ({ view }) => {
   return view.render("index");

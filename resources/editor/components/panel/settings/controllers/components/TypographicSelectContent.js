@@ -5,7 +5,7 @@ import { Scrollbar } from "react-scrollbars-custom";
 import { useSelector } from "react-redux";
 
 const classNames = {
-  content: "z-50 absolute w-40 h-60 overflow-hidden rounded left-0 top-0 bg-slate-700 p-2 shadow hidden",
+  content: "z-50 absolute w-52 h-60 overflow-hidden rounded left-0 top-0 bg-slate-700 p-2 shadow hidden",
   li: "text-slate-100 px-1 py-1 hover:bg-slate-900 cursor-pointer rounded truncate",
   ul: "",
 }
@@ -21,7 +21,7 @@ const TypographicSelectContent = () => {
   return createPortal(<div ref={ref} className={classNames.content}>
     <Scrollbar
       style={{
-        width: "9rem"
+        width: "12rem"
       }}
       contentProps={{
         renderer: (props) => {
